@@ -13,20 +13,13 @@ const getHeader = () => {
     return (headers = {
       headers: {
         Authorization: `${token ? `Bearer ${token}` : ""}`,
-        "Content-Type": "multipart/form-data",
-      // "Content-Type": "application/json",
-      },
-    });
-  }
-};
-
-const getRecommendationEngineHeader = () => {
-  if (typeof window !== "undefined" && localStorage.getItem("token")) {
-    token = localStorage.getItem("token");
-    // console.log("token",token)
-    return (headers = {
-      headers: {
+       // "Content-Type": "multipart/form-data",
        "Content-Type": "application/json",
+       "Access-Control-Allow-Origin": "*",
+
+
+       
+       "Content-Type": "application/x-www-form-urlencoded"
       },
     });
   }
@@ -211,7 +204,7 @@ const recommendationCall = () => {
   var material2 = localStorage.getItem("materialID-Recommendation");
   const url = `http://10.81.41.200:8000/mpa/assist?material=${material2}`;
   return new Promise((resolve, reject) => {
-    const header = getRecommendationEngineHeader();
+    const header = getHeader();
     axios
       .get(url, header)
       .then((res) => {
@@ -230,7 +223,7 @@ const feedbackCall = () => {
 
   const url = `http://10.81.41.200:8000/mpa/feedback?transaction=101010&accepted=no&reason=SAMPLETEXT`;
   return new Promise((resolve, reject) => {
-    const header = getRecommendationEngineHeader();
+    const header = getHeader();
     axios
       .get(url, header)
       .then((res) => {
