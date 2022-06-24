@@ -73,6 +73,8 @@ export const RecommendationEngine = (props) => {
 
     if (materialSelected == true){
       localStorage.setItem("API_Recommendation_Accepted", recommendationAccepted);
+      console.log("Accpted: ", localStorage.getItem("API_Recommendation_Accepted"));
+
 
       let recommData = await recommendationCall();
       console.log("RECOMMENDATION CALL: ", recommData);
@@ -83,11 +85,13 @@ export const RecommendationEngine = (props) => {
       console.log("Transaction: ", localStorage.getItem("recomm_transaction"));
 
       if (submitFeedback){
-        localStorage.setItem("feedbackText", feedbackText);
+        // localStorage.setItem("feedbackText", feedbackText);
         console.log(localStorage.getItem("feedbackText"));
 
         let feedbackData = await feedbackCall();
         console.log("FEEDBACK CALL: ", feedbackData);
+
+
 
       }
 
@@ -133,6 +137,7 @@ export const RecommendationEngine = (props) => {
 
   const handleText = (event) => {
     setFeedbackText(event.target.value);
+    localStorage.setItem("feedbackText", feedbackText);
   };
 
   const handleSubmit = () => {

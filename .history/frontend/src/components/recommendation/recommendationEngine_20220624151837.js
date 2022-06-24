@@ -40,7 +40,7 @@ export const RecommendationEngine = (props) => {
   const [plannerMaterials, setPlannerMaterials] = useState([]);
   const [materialsLoaded, setMaterialsLoaded] = useState(false);
 
-  const [recommendationText, setRecommendationText] = useState("");
+  const [recommendationText, setRecommendationText] = useState(" noo");
   const [transaction, setTransaction] = useState("");
 
 
@@ -49,7 +49,6 @@ export const RecommendationEngine = (props) => {
   const [accept, setAccept] = useState(true);
   const [recommendationAccepted, setRecommendationAccepted] = useState("");
   const [submitFeedback, setSubmitFeedback] = useState(false);
-  const [feedbackText, setFeedbackText] = useState("");
 
 
   let materials = [];
@@ -82,14 +81,9 @@ export const RecommendationEngine = (props) => {
       localStorage.setItem("recomm_transaction", transaction);
       console.log("Transaction: ", localStorage.getItem("recomm_transaction"));
 
-      if (submitFeedback){
-        localStorage.setItem("feedbackText", feedbackText);
-        console.log(localStorage.getItem("feedbackText"));
 
-        let feedbackData = await feedbackCall();
-        console.log("FEEDBACK CALL: ", feedbackData);
-
-      }
+      let feedbackData = await feedbackCall();
+      console.log("FEEDBACK CALL: ", feedbackData);
 
     }
 
@@ -129,15 +123,6 @@ export const RecommendationEngine = (props) => {
     setRecommendationAccepted("yes");
   }
 
-
-
-  const handleText = (event) => {
-    setFeedbackText(event.target.value);
-  };
-
-  const handleSubmit = () => {
-    setSubmitFeedback(true);
-  };
 
 
 const themeButton = createTheme({
@@ -244,8 +229,8 @@ const themeButton = createTheme({
               label="Input feedback on rationale for rejection..."
               multiline
               rows={4}
+              //defaultValue="Default Value"
               variant="filled"
-              onChange={handleText}
               fullWidth
             />
           </Box>
@@ -260,7 +245,7 @@ const themeButton = createTheme({
             justifyContent="flex-end"
             alignItems="flex-end"
           >
-            <Button variant="contained"  align="right" sx={{ height: 60, width:"20%",fontSize:20, fontWeight:0, color:"#FFFFFF", backgroundColor:"#00cc00" }} onClick={handleSubmit}>
+            <Button variant="contained"  align="right" sx={{ height: 60, width:"20%",fontSize:20, fontWeight:0, color:"#FFFFFF", backgroundColor:"#00cc00" }}>
               Submit
             </Button>
               

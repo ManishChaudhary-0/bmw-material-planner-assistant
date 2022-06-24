@@ -230,7 +230,8 @@ const feedbackCall = () => {
   var accepted = localStorage.getItem("API_Recommendation_Accepted");
   var guid = localStorage.getItem("recomm_transaction");
   var text = localStorage.getItem("feedbackText");
-  const url = `http://10.81.41.200:8000/mpa/feedback?transaction=${guid}&accepted=${accepted}&reason=${text}`;
+  console.log("TEXT", text);
+  const url = `http://10.81.41.200:8000/mpa/feedback?transaction=${guid}&accepted=${accepted}&reason=SAMPLETEXT`;
   return new Promise((resolve, reject) => {
     const header = getRecommendationEngineHeader();
     axios
