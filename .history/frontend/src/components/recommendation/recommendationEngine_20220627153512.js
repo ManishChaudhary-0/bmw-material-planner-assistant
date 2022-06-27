@@ -50,8 +50,6 @@ export const RecommendationEngine = (props) => {
   const [recommendationAccepted, setRecommendationAccepted] = useState("");
   const [submitFeedback, setSubmitFeedback] = useState(false);
   const [feedbackText, setFeedbackText] = useState("");
-  localStorage.setItem("HOLD", false);
-
 
 
   let materials = [];
@@ -74,9 +72,7 @@ export const RecommendationEngine = (props) => {
     localStorage.setItem("API_Recommendation_Accepted", "");
     console.log("one");
 
-    let hold = localStorage.getItem("HOLD");
-
-    if (hold == false & materialsLoaded & materialSelected == true){
+    if (materialsLoaded & materialSelected == true){
       console.log("IF");
 
       localStorage.setItem("API_Recommendation_Accepted", recommendationAccepted);
@@ -88,8 +84,6 @@ export const RecommendationEngine = (props) => {
       setTransaction(recommData.transaction);
       localStorage.setItem("recomm_transaction", transaction);
       console.log("Transaction: ", localStorage.getItem("recomm_transaction"));
-
-      localStorage.setItem("HOLD", true);
 
       // if (submitFeedback){
       //   localStorage.setItem("feedbackText", feedbackText);
