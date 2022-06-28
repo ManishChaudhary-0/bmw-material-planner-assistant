@@ -50,7 +50,7 @@ export const RecommendationEngine = (props) => {
   const [submitFeedback, setSubmitFeedback] = useState(false);
   const [feedbackText, setFeedbackText] = useState("");
   localStorage.setItem("HOLD", false);
-  //localStorage.setItem("HOLDMaterialCall", false);
+  localStorage.setItem("HOLDMaterialCall", false);
   let materials = [];
   var user = "";
 
@@ -59,7 +59,7 @@ export const RecommendationEngine = (props) => {
 
     let hold2 = localStorage.getItem("HOLDMaterialCall");
 
-    if (materialsLoaded == false){
+    if (hold2 == false & materialsLoaded == false){
       user = localStorage.getItem("plannerId");
       let data = await matetrialCall();
   
@@ -152,7 +152,7 @@ const handleAccept = () => {
 
 const handleText = (event) => {
   setFeedbackText(event.target.value);
- // localStorage.setItem("HOLDMaterialCall", true);
+  localStorage.setItem("HOLDMaterialCall", true);
 };
 
 
