@@ -39,8 +39,6 @@ export const RecommendationEngine = (props) => {
   const [materialSelected, setMaterialSelected] = useState(false);
   const [resultBool, setResultBool] = useState(false);
   const [plannerMaterials, setPlannerMaterials] = useState([]);
-
-
   const [materialsLoaded, setMaterialsLoaded] = useState(false);
 
   const [recommendationText, setRecommendationText] = useState("");
@@ -52,13 +50,16 @@ export const RecommendationEngine = (props) => {
   const [submitFeedback, setSubmitFeedback] = useState(false);
   const [feedbackText, setFeedbackText] = useState("");
 
+  const [hold, setHold] = useState(false);
+  const [hold2, setHold2] = useState(false);
+
   let materials = [];
   var user = "";
 
 
   useEffect(async () => {
 
-    if (materialsLoaded == false){
+    if (hold2 == false & materialsLoaded == false){
       user = localStorage.getItem("plannerId");
       let data = await matetrialCall();
   
@@ -67,7 +68,9 @@ export const RecommendationEngine = (props) => {
       }
 
       setPlannerMaterials(materials);
+      localStorage.setItem("HOLDMaterialCall", true);
       setMaterialsLoaded(true);
+      setHold2(true);
     }
 
     localStorage.setItem("API_Recommendation_Accepted", "");
@@ -85,18 +88,15 @@ export const RecommendationEngine = (props) => {
       setTransaction(recommData.transaction);
       localStorage.setItem("recomm_transaction", transaction);
       console.log("Transaction: ", localStorage.getItem("recomm_transaction"));
-
-      localStorage.setItem("HOLD", true);
-
+      setHold(true);
     }
+
     // else if (materialsLoaded & materialSelected == true & submitFeedback){
     //   console.log("three");
     //   localStorage.setItem("feedbackText", feedbackText);
     //   console.log(localStorage.getItem("feedbackText"));
-
     //   let feedbackData = await feedbackCall();
     //   console.log("FEEDBACK CALL: ", feedbackData);
-
     // }
 
     if (submitFeedback){
@@ -115,7 +115,9 @@ const handler = (event) => {
   setMaterialID(event.target.value);
   localStorage.setItem("materialID-Recommendation", event.target.value);
   setMaterialSelected(true);
-  setMaterialsLoaded(true);
+  setHold2(true);
+
+
 };
 
 const menuItems = plannerMaterials.map(item => (

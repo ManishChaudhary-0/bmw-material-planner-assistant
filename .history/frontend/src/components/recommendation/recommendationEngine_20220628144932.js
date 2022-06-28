@@ -39,8 +39,6 @@ export const RecommendationEngine = (props) => {
   const [materialSelected, setMaterialSelected] = useState(false);
   const [resultBool, setResultBool] = useState(false);
   const [plannerMaterials, setPlannerMaterials] = useState([]);
-
-
   const [materialsLoaded, setMaterialsLoaded] = useState(false);
 
   const [recommendationText, setRecommendationText] = useState("");
@@ -51,12 +49,15 @@ export const RecommendationEngine = (props) => {
   const [recommendationAccepted, setRecommendationAccepted] = useState("");
   const [submitFeedback, setSubmitFeedback] = useState(false);
   const [feedbackText, setFeedbackText] = useState("");
-
+  localStorage.setItem("HOLD", false);
+  localStorage.setItem("HOLDMaterialCall", false);
   let materials = [];
   var user = "";
 
 
   useEffect(async () => {
+
+    let hold2 = localStorage.getItem("HOLDMaterialCall");
 
     if (materialsLoaded == false){
       user = localStorage.getItem("plannerId");
@@ -67,13 +68,16 @@ export const RecommendationEngine = (props) => {
       }
 
       setPlannerMaterials(materials);
+      localStorage.setItem("HOLDMaterialCall", true);
       setMaterialsLoaded(true);
     }
 
     localStorage.setItem("API_Recommendation_Accepted", "");
     console.log("one");
 
-    if (materialsLoaded & materialSelected == true){
+    let hold = localStorage.getItem("HOLD");
+
+    if (hold == false & materialsLoaded & materialSelected == true){
       console.log("two");
 
       localStorage.setItem("API_Recommendation_Accepted", recommendationAccepted);
@@ -115,7 +119,6 @@ const handler = (event) => {
   setMaterialID(event.target.value);
   localStorage.setItem("materialID-Recommendation", event.target.value);
   setMaterialSelected(true);
-  setMaterialsLoaded(true);
 };
 
 const menuItems = plannerMaterials.map(item => (

@@ -51,6 +51,7 @@ export const RecommendationEngine = (props) => {
   const [recommendationAccepted, setRecommendationAccepted] = useState("");
   const [submitFeedback, setSubmitFeedback] = useState(false);
   const [feedbackText, setFeedbackText] = useState("");
+  localStorage.setItem("HOLD", false);
 
   let materials = [];
   var user = "";
