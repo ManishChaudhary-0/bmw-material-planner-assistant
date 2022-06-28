@@ -59,9 +59,26 @@ export const RecommendationEngine = (props) => {
     }
     localStorage.setItem("API_Recommendation_Accepted", "");
 
-    if (holding == false & materialsLoaded & materialSelected == true){
-      feedback();
-      setHolding(true);
+    if (materialsLoaded & materialSelected == true){
+      console.log("two");
+      if (holding == false){
+
+        console.log("Two.2");
+
+        localStorage.setItem("API_Recommendation_Accepted", recommendationAccepted);
+
+        let recommData = await recommendationCall();
+        console.log("RECOMMENDATION CALL: ", recommData);
+
+        setRecommendationText(recommData.advice);
+        setTransaction(recommData.transaction);
+        localStorage.setItem("recomm_transaction", transaction);
+        console.log("Transaction: ", localStorage.getItem("recomm_transaction"));
+
+        localStorage.setItem("HOLD", true);
+
+      }
+
     }
 
     if (submitFeedback){
@@ -90,31 +107,11 @@ async function loadMaterials()  {
 
 };
 
-
-async function feedback() {
-
-
-  console.log("two");
-
-  localStorage.setItem("API_Recommendation_Accepted", recommendationAccepted);
-
-  let recommData = await recommendationCall();
-  console.log("RECOMMENDATION CALL: ", recommData);
-
-  setRecommendationText(recommData.advice);
-  setTransaction(recommData.transaction);
-  localStorage.setItem("recomm_transaction", transaction);
-  console.log("Transaction: ", localStorage.getItem("recomm_transaction"));
-
-  localStorage.setItem("HOLD", true);
-  setHolding(true);
-
-}
-
 const handler = (event) => {
   setMaterialID(event.target.value);
   localStorage.setItem("materialID-Recommendation", event.target.value);
   setMaterialSelected(true);
+  setHolding(true);
 };
 
 const menuItems = plannerMaterials.map(item => (

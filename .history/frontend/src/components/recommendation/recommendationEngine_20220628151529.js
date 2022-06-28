@@ -59,9 +59,8 @@ export const RecommendationEngine = (props) => {
     }
     localStorage.setItem("API_Recommendation_Accepted", "");
 
-    if (holding == false & materialsLoaded & materialSelected == true){
+    if (materialsLoaded & materialSelected == true){
       feedback();
-      setHolding(true);
     }
 
     if (submitFeedback){
@@ -92,8 +91,6 @@ async function loadMaterials()  {
 
 
 async function feedback() {
-
-
   console.log("two");
 
   localStorage.setItem("API_Recommendation_Accepted", recommendationAccepted);

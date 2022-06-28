@@ -28,15 +28,16 @@ import { feedbackCall, matetrialCall, recommendationCall } from 'src/utils/apihe
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { ContentCutOutlined } from '@mui/icons-material';
-import { faHandHolding } from '@fortawesome/free-solid-svg-icons';
 
 
 export const RecommendationEngine = (props) => {
   // ChartJS.register(ChartDataLabels);
   const theme = useTheme();
   const classStyle = useStyles();
+
   const [materialID, setMaterialID] = useState("");
   const [materialSelected, setMaterialSelected] = useState(false);
+  const [resultBool, setResultBool] = useState(false);
   const [plannerMaterials, setPlannerMaterials] = useState([]);
   const [materialsLoaded, setMaterialsLoaded] = useState(false);
   const [recommendationText, setRecommendationText] = useState("");
@@ -46,8 +47,6 @@ export const RecommendationEngine = (props) => {
   const [submitFeedback, setSubmitFeedback] = useState(false);
   const [feedbackText, setFeedbackText] = useState("");
 
-  const [holding, setHolding] = useState(false);
-
   let materials = [];
   var user = "";
 
@@ -56,13 +55,48 @@ export const RecommendationEngine = (props) => {
 
     if (materialsLoaded == false){
       loadMaterials();
-    }
-    localStorage.setItem("API_Recommendation_Accepted", "");
+      setMaterialsLoaded(true);
+      console.log("one");
 
-    if (holding == false & materialsLoaded & materialSelected == true){
-      feedback();
-      setHolding(true);
+      // user = localStorage.getItem("plannerId");
+      // let data = await matetrialCall();
+  
+      // for (let i = 0; i < data.result.length; i++) {
+      //   materials.push(data.result[i]["material"]);
+      // }
+
+      // setPlannerMaterials(materials);
+      // setMaterialsLoaded(true);
     }
+
+    localStorage.setItem("API_Recommendation_Accepted", "");
+    //console.log("one");
+
+    if (materialsLoaded & materialSelected == true){
+      console.log("two");
+
+      localStorage.setItem("API_Recommendation_Accepted", recommendationAccepted);
+
+      let recommData = await recommendationCall();
+      console.log("RECOMMENDATION CALL: ", recommData);
+
+      setRecommendationText(recommData.advice);
+      setTransaction(recommData.transaction);
+      localStorage.setItem("recomm_transaction", transaction);
+      console.log("Transaction: ", localStorage.getItem("recomm_transaction"));
+
+      localStorage.setItem("HOLD", true);
+
+    }
+    // else if (materialsLoaded & materialSelected == true & submitFeedback){
+    //   console.log("three");
+    //   localStorage.setItem("feedbackText", feedbackText);
+    //   console.log(localStorage.getItem("feedbackText"));
+
+    //   let feedbackData = await feedbackCall();
+    //   console.log("FEEDBACK CALL: ", feedbackData);
+
+    // }
 
     if (submitFeedback){
       console.log("Four");
@@ -86,35 +120,13 @@ async function loadMaterials()  {
   }
   setPlannerMaterials(materials);
   setMaterialsLoaded(true);
-  console.log("one");
-
 };
-
-
-async function feedback() {
-
-
-  console.log("two");
-
-  localStorage.setItem("API_Recommendation_Accepted", recommendationAccepted);
-
-  let recommData = await recommendationCall();
-  console.log("RECOMMENDATION CALL: ", recommData);
-
-  setRecommendationText(recommData.advice);
-  setTransaction(recommData.transaction);
-  localStorage.setItem("recomm_transaction", transaction);
-  console.log("Transaction: ", localStorage.getItem("recomm_transaction"));
-
-  localStorage.setItem("HOLD", true);
-  setHolding(true);
-
-}
 
 const handler = (event) => {
   setMaterialID(event.target.value);
   localStorage.setItem("materialID-Recommendation", event.target.value);
   setMaterialSelected(true);
+  setMaterialsLoaded(true);
 };
 
 const menuItems = plannerMaterials.map(item => (
