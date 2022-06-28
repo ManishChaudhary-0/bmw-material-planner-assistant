@@ -53,6 +53,7 @@ export const RecommendationEngine = (props) => {
 
 
   useEffect(async () => {
+
     if (materialsLoaded == false){
       loadMaterials();
     }
@@ -60,37 +61,57 @@ export const RecommendationEngine = (props) => {
       feedback();
       setHolding(true);
     }
-    console.log(recommendationAccepted);
 
     if (submitFeedback){
-      console.log("Submit Feedback -L66");
+      console.log("Four");
       localStorage.setItem("feedbackText", feedbackText);
+      console.log(localStorage.getItem("feedbackText"));
       localStorage.setItem("recomm_transaction", transaction);
       localStorage.setItem("API_Recommendation_Accepted", recommendationAccepted);
+
       let feedbackData = await feedbackCall();
       console.log("FEEDBACK CALL: ", feedbackData);
 
     }
 
+
   });
 
 async function loadMaterials()  {
-  console.log("Loading Material - L81")
+
   user = localStorage.getItem("plannerId");
   let data = await matetrialCall();
+
   for (let i = 0; i < data.result.length; i++) {
     materials.push(data.result[i]["material"]);
   }
   setPlannerMaterials(materials);
   setMaterialsLoaded(true);
+  console.log("one");
+  localStorage.setItem("recomm_transaction", "");
+
 
 };
 
+
 async function feedback() {
+
+
+  console.log("two");
+
+ // localStorage.setItem("API_Recommendation_Accepted", recommendationAccepted);
+
   let recommData = await recommendationCall();
   console.log("RECOMMENDATION CALL: ", recommData);
+
   setRecommendationText(recommData.advice);
   setTransaction(recommData.transaction);
+  // localStorage.setItem("recomm_transaction", transaction);
+  // console.log("Advice: ", recommendationText);
+  // console.log("Transaction: ", recommData.transaction);
+
+
+  localStorage.setItem("HOLD", true);
   setHolding(true);
 
 }

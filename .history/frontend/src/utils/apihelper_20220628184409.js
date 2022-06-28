@@ -229,7 +229,7 @@ const feedbackCall = () => {
  // var material2 = localStorage.getItem("materialID-Recommendation");
   // http://10.81.41.200:8000/mpa/feedback?transaction=<GUID>&accepted=no&reason=<text>
   var accepted = localStorage.getItem("API_Recommendation_Accepted");
-  var guid = localStorage.getItem("API_Recommendation_Accepted");
+  var guid = localStorage.getItem("recomm_transaction");
   var text = localStorage.getItem("feedbackText");
   console.log("GUID: ", guid);
   const url = `http://10.81.41.200:8000/mpa/feedback?transaction=${guid}&accepted=${accepted}&reason=${text}`;

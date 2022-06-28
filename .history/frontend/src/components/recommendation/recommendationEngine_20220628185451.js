@@ -60,17 +60,19 @@ export const RecommendationEngine = (props) => {
       feedback();
       setHolding(true);
     }
-    console.log(recommendationAccepted);
 
     if (submitFeedback){
       console.log("Submit Feedback -L66");
+      console.log(recommendationAccepted);
       localStorage.setItem("feedbackText", feedbackText);
       localStorage.setItem("recomm_transaction", transaction);
-      localStorage.setItem("API_Recommendation_Accepted", recommendationAccepted);
+     // localStorage.setItem("API_Recommendation_Accepted", recommendationAccepted);
+
       let feedbackData = await feedbackCall();
       console.log("FEEDBACK CALL: ", feedbackData);
 
     }
+
 
   });
 
@@ -83,6 +85,8 @@ async function loadMaterials()  {
   }
   setPlannerMaterials(materials);
   setMaterialsLoaded(true);
+  localStorage.setItem("recomm_transaction", "");
+
 
 };
 
@@ -91,6 +95,7 @@ async function feedback() {
   console.log("RECOMMENDATION CALL: ", recommData);
   setRecommendationText(recommData.advice);
   setTransaction(recommData.transaction);
+  localStorage.setItem("HOLD", true);
   setHolding(true);
 
 }

@@ -42,7 +42,7 @@ export const RecommendationEngine = (props) => {
   const [recommendationText, setRecommendationText] = useState("");
   const [transaction, setTransaction] = useState("");
   const [reject, setReject] = useState(false);
-  const [recommendationAccepted, setRecommendationAccepted] = useState("");
+ // const [recommendationAccepted, setRecommendationAccepted] = useState("");
   const [submitFeedback, setSubmitFeedback] = useState(false);
   const [feedbackText, setFeedbackText] = useState("");
 
@@ -53,6 +53,7 @@ export const RecommendationEngine = (props) => {
 
 
   useEffect(async () => {
+
     if (materialsLoaded == false){
       loadMaterials();
     }
@@ -60,17 +61,18 @@ export const RecommendationEngine = (props) => {
       feedback();
       setHolding(true);
     }
-    console.log(recommendationAccepted);
 
     if (submitFeedback){
       console.log("Submit Feedback -L66");
       localStorage.setItem("feedbackText", feedbackText);
       localStorage.setItem("recomm_transaction", transaction);
-      localStorage.setItem("API_Recommendation_Accepted", recommendationAccepted);
+     // localStorage.setItem("API_Recommendation_Accepted", recommendationAccepted);
+
       let feedbackData = await feedbackCall();
       console.log("FEEDBACK CALL: ", feedbackData);
 
     }
+
 
   });
 
@@ -83,6 +85,8 @@ async function loadMaterials()  {
   }
   setPlannerMaterials(materials);
   setMaterialsLoaded(true);
+  localStorage.setItem("recomm_transaction", "");
+
 
 };
 
@@ -91,6 +95,7 @@ async function feedback() {
   console.log("RECOMMENDATION CALL: ", recommData);
   setRecommendationText(recommData.advice);
   setTransaction(recommData.transaction);
+  localStorage.setItem("HOLD", true);
   setHolding(true);
 
 }
@@ -120,12 +125,14 @@ const dddd = {
 
 const handleReject = () => {
   setReject(!reject);
+  localStorage.setItem("API_Recommendation_Accepted", "no");  
   setRecommendationAccepted("no");
 }
 
 
 const handleAccept = () => {
   setReject(!reject);
+  localStorage.setItem("API_Recommendation_Accepted", "no");  
   setRecommendationAccepted("yes");
 }
 
