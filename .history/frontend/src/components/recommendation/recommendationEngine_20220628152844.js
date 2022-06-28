@@ -86,8 +86,6 @@ async function loadMaterials()  {
   setPlannerMaterials(materials);
   setMaterialsLoaded(true);
   console.log("one");
-  localStorage.setItem("recomm_transaction", "");
-
 
 };
 
