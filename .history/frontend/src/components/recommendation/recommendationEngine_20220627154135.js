@@ -27,7 +27,6 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import { feedbackCall, matetrialCall, recommendationCall } from 'src/utils/apihelper';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { ContentCutOutlined } from '@mui/icons-material';
 
 
 export const RecommendationEngine = (props) => {
@@ -44,22 +43,23 @@ export const RecommendationEngine = (props) => {
   const [recommendationText, setRecommendationText] = useState("");
   const [transaction, setTransaction] = useState("");
 
+
+
   const [reject, setReject] = useState(false);
   const [accept, setAccept] = useState(true);
   const [recommendationAccepted, setRecommendationAccepted] = useState("");
   const [submitFeedback, setSubmitFeedback] = useState(false);
   const [feedbackText, setFeedbackText] = useState("");
   localStorage.setItem("HOLD", false);
-  localStorage.setItem("HOLDMaterialCall", false);
+
+
+
   let materials = [];
   var user = "";
 
-
   useEffect(async () => {
 
-    let hold2 = localStorage.getItem("HOLDMaterialCall");
-
-    if (hold2 == false & materialsLoaded == false){
+    if (materialsLoaded == false){
       user = localStorage.getItem("plannerId");
       let data = await matetrialCall();
   
@@ -68,7 +68,6 @@ export const RecommendationEngine = (props) => {
       }
 
       setPlannerMaterials(materials);
-      localStorage.setItem("HOLDMaterialCall", true);
       setMaterialsLoaded(true);
     }
 
@@ -92,19 +91,18 @@ export const RecommendationEngine = (props) => {
 
       localStorage.setItem("HOLD", true);
 
+      // if (submitFeedback){
+      //   localStorage.setItem("feedbackText", feedbackText);
+      //   console.log(localStorage.getItem("feedbackText"));
+
+      //   let feedbackData = await feedbackCall();
+      //   console.log("FEEDBACK CALL: ", feedbackData);
+
+      // }
+
     }
-    // else if (materialsLoaded & materialSelected == true & submitFeedback){
-    //   console.log("three");
-    //   localStorage.setItem("feedbackText", feedbackText);
-    //   console.log(localStorage.getItem("feedbackText"));
-
-    //   let feedbackData = await feedbackCall();
-    //   console.log("FEEDBACK CALL: ", feedbackData);
-
-    // }
-
-    if (submitFeedback){
-      console.log("Four");
+    else if (materialsLoaded & materialSelected == true & submitFeedback){
+      console.log("three");
       localStorage.setItem("feedbackText", feedbackText);
       console.log(localStorage.getItem("feedbackText"));
 

@@ -50,16 +50,14 @@ export const RecommendationEngine = (props) => {
   const [submitFeedback, setSubmitFeedback] = useState(false);
   const [feedbackText, setFeedbackText] = useState("");
   localStorage.setItem("HOLD", false);
-  localStorage.setItem("HOLDMaterialCall", false);
+
   let materials = [];
   var user = "";
 
 
   useEffect(async () => {
 
-    let hold2 = localStorage.getItem("HOLDMaterialCall");
-
-    if (hold2 == false & materialsLoaded == false){
+    if (materialsLoaded == false){
       user = localStorage.getItem("plannerId");
       let data = await matetrialCall();
   
@@ -68,7 +66,6 @@ export const RecommendationEngine = (props) => {
       }
 
       setPlannerMaterials(materials);
-      localStorage.setItem("HOLDMaterialCall", true);
       setMaterialsLoaded(true);
     }
 
