@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Bar } from 'react-chartjs-2';
 import {
     Box,
@@ -42,12 +42,12 @@ export const RecommendationEngine = (props) => {
   const [recommendationText, setRecommendationText] = useState("");
   const [transaction, setTransaction] = useState("");
   const [reject, setReject] = useState(false);
-  const [recommendationAccepted, setRecommendationAccepted] = useState("");
+  const [recommendationAccepted, setRecommendationAccepted] = useState("yes");
   const [submitFeedback, setSubmitFeedback] = useState(false);
   const [feedbackText, setFeedbackText] = useState("");
 
   const [holding, setHolding] = useState(false);
-
+  const textinputfield = document.getElementById('outlined-multiline-static');
   let materials = [];
   var user = "";
 
@@ -57,25 +57,20 @@ export const RecommendationEngine = (props) => {
       loadMaterials();
     }
     if (holding == false & materialsLoaded & materialSelected == true){
-      feedback();
+      getrec();
       setHolding(true);
     }
-    console.log(recommendationAccepted);
 
-    if (submitFeedback){
-      console.log("Submit Feedback -L66");
-      localStorage.setItem("feedbackText", feedbackText);
-      localStorage.setItem("recomm_transaction", transaction);
-      localStorage.setItem("API_Recommendation_Accepted", recommendationAccepted);
-      let feedbackData = await feedbackCall();
-      console.log("FEEDBACK CALL: ", feedbackData);
-
+    if (submitFeedback & materialSelected){
+      feedback();
+      setHolding(false);
+      setMaterialSelected(false);
+      setSubmitFeedback(false);
     }
 
   });
 
 async function loadMaterials()  {
-  console.log("Loading Material - L81")
   user = localStorage.getItem("plannerId");
   let data = await matetrialCall();
   for (let i = 0; i < data.result.length; i++) {
@@ -83,22 +78,33 @@ async function loadMaterials()  {
   }
   setPlannerMaterials(materials);
   setMaterialsLoaded(true);
-
 };
 
-async function feedback() {
+async function getrec() {
   let recommData = await recommendationCall();
   console.log("RECOMMENDATION CALL: ", recommData);
   setRecommendationText(recommData.advice);
   setTransaction(recommData.transaction);
-  setHolding(true);
+}
 
+async function feedback() {
+  localStorage.setItem("feedbackText", feedbackText);
+  localStorage.setItem("recomm_transaction", transaction);
+  localStorage.setItem("API_Recommendation_Accepted", recommendationAccepted);
+  let feedbackData = await feedbackCall();
+  console.log("FEEDBACK CALL: ", feedbackData);
 }
 
 const handler = (event) => {
   setMaterialID(event.target.value);
   localStorage.setItem("materialID-Recommendation", event.target.value);
   setMaterialSelected(true);
+  setHolding(false);
+  setSubmitFeedback(false);
+  setReject(false);
+  setRecommendationAccepted("yes");
+  setFeedbackText("");
+  textinputfield.value = "";
 };
 
 const menuItems = plannerMaterials.map(item => (
@@ -119,13 +125,13 @@ const dddd = {
 }
 
 const handleReject = () => {
-  setReject(!reject);
+  setReject(true);
   setRecommendationAccepted("no");
 }
 
 
 const handleAccept = () => {
-  setReject(!reject);
+  setReject(false);
   setRecommendationAccepted("yes");
 }
 
@@ -206,7 +212,6 @@ const themeButton = createTheme({
               <Button sx={{width:'50%', fontSize:20, fontWeight:0}} theme={themeButton} onClick={handleReject} color={!reject ? "inherit" : "secondary"}>Reject</Button>
               <Button sx={{width:'50%', fontSize:20, fontWeight:0}} theme={themeButton}  onClick={handleAccept} color={reject ? "inherit" : "primary"}>Agree</Button>
             </ButtonGroup>
-              
           </Box>
 
 
@@ -242,7 +247,7 @@ const themeButton = createTheme({
           >
             <TextField
               id="outlined-multiline-static"
-              label="Input feedback on rationale for rejection..."
+              label="Input feedback on rationale for acceptance or rejection..."
               multiline
               rows={4}
               variant="filled"
