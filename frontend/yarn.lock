@@ -2659,10 +2659,10 @@
     "classnames" "^2.2.6"
     "react-jss" "^8.6.1"
 
-"react-toastify@^9.0.1":
-  "integrity" "sha512-c2zeZHkCX+WXuItS/JRqQ/8CH8Qm/je+M0rt09xe9fnu5YPJigtNOdD8zX4fwLA093V2am3abkGfOowwpkrwOQ=="
-  "resolved" "https://registry.npmjs.org/react-toastify/-/react-toastify-9.0.1.tgz"
-  "version" "9.0.1"
+"react-toastify@^9.0.5":
+  "integrity" "sha512-dszPCeQINY+Nm6HmsiAXT/7wsazPqv0S/RuhIYLAW+fTKcd3T1iRjZG0XqrN9nvAzqaE5J6uxMaiBrOevxjY8g=="
+  "resolved" "https://registry.npmjs.org/react-toastify/-/react-toastify-9.0.5.tgz"
+  "version" "9.0.5"
   dependencies:
     "clsx" "^1.1.1"
 

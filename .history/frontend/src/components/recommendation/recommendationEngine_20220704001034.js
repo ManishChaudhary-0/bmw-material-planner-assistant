@@ -34,7 +34,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import LinearProgress from '@mui/material/LinearProgress';
-import Autocomplete from '@mui/material/Autocomplete';
 
 
 export const RecommendationEngine = (props) => {

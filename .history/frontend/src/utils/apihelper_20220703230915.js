@@ -182,6 +182,7 @@ const matetrialCall = () => {
       .get(url, header)
       .then((res) => {
         resolve(res.data);
+        localStorage.setItem("FEEDBACK_API_Status", res.status);
       })
       .catch((err) => {
         reject(handleError(err));

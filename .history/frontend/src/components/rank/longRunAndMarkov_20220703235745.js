@@ -9,7 +9,6 @@ import {
   Divider,
   useTheme,
   InputLabel,
-  TextField,
   FormControl,
   Select,
   MenuItem,
@@ -335,12 +334,12 @@ export const LongRunAndMarkov = (props) => {
     <MenuItem value={item.toString()} >{item}</MenuItem>
   ));
 
-  const handler = (event, value) => {
-    setMaterialID(value);
-    localStorage.setItem("materialID", value);
+  const handler = (event) => {
+    setMaterialID(event.target.value);
+    localStorage.setItem("materialID", event.target.value);
     setMaterialSelected(true);
     localStorage.setItem("queueMarkov", true);
-    localStorage.setItem("MAT", value);
+    localStorage.setItem("MAT", event.target.value);
   };
 
   // const handleChange = (event) =>
@@ -370,10 +369,8 @@ export const LongRunAndMarkov = (props) => {
                   disablePortal
                   id="combo-box-demo"
                   options={plannerMaterials}
-                  value={materialID}
                   sx={{ width: 300 }}
-                  onChange={handler}
-                  renderInput={(params) => <TextField {...params} label="Select Material" />}
+                  renderInput={(params) => <TextField {...params} label="Movie" />}
                 />
             </FormControl>
           }

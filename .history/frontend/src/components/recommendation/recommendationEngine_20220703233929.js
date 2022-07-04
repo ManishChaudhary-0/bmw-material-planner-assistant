@@ -33,9 +33,6 @@ import { faHandHolding } from '@fortawesome/free-solid-svg-icons';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import LinearProgress from '@mui/material/LinearProgress';
-import Autocomplete from '@mui/material/Autocomplete';
-
 
 export const RecommendationEngine = (props) => {
   // ChartJS.register(ChartDataLabels);
@@ -114,8 +111,6 @@ async function loadMaterials()  {
   }
   setPlannerMaterials(materials);
   setMaterialsLoaded(true);
-  setLoading(false);
-
 };
 
 async function getrec() {
@@ -137,9 +132,9 @@ async function feedback() {
 
 }
 
-const handler = (event, value) => {
-  setMaterialID(value);
-  localStorage.setItem("materialID-Recommendation", value);
+const handler = (event) => {
+  setMaterialID(event.target.value);
+  localStorage.setItem("materialID-Recommendation", event.target.value);
   setMaterialSelected(true);
   setHolding(false);
   setSubmitFeedback(false);
@@ -218,7 +213,7 @@ const themeButton = createTheme({
           <CardHeader
               action={
                   <FormControl style={{ width: 300 }}>
-                      {/* <InputLabel id="Select Material">Material</InputLabel>
+                      <InputLabel id="Select Material">Material</InputLabel>
                       <Select
                       // labelId="Select Material"
                       // id="Select Material"
@@ -228,17 +223,7 @@ const themeButton = createTheme({
                       >
                         {menuItems}
 
-                      </Select> */}
-
-                      <Autocomplete
-                        disablePortal
-                        id="combo-box-demo"
-                        options={plannerMaterials}
-                        value={materialID}
-                        sx={{ width: 300 }}
-                        onChange={handler}
-                        renderInput={(params) => <TextField {...params} label="Select Material" />}
-                      />
+                      </Select>
                   </FormControl>
               }
               title="Recommendation Engine"
@@ -247,8 +232,6 @@ const themeButton = createTheme({
         <Divider />
 
         <CardContent display="flex">
-
-          {loading ? <LinearProgress /> : <LinearProgress /> }
 
             <Typography paragraph variant="subtitle1" gutterBottom component="div">
 

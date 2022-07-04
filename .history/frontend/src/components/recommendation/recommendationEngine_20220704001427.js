@@ -139,6 +139,9 @@ async function feedback() {
 
 const handler = (event, value) => {
   setMaterialID(value);
+  console.log("VV: ", value);
+  console.log("VVVV: ", materialID);
+
   localStorage.setItem("materialID-Recommendation", value);
   setMaterialSelected(true);
   setHolding(false);

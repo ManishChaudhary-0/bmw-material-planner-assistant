@@ -337,10 +337,10 @@ export const LongRunAndMarkov = (props) => {
 
   const handler = (event, value) => {
     setMaterialID(value);
-    localStorage.setItem("materialID", value);
+    localStorage.setItem("materialID", event.target.value);
     setMaterialSelected(true);
     localStorage.setItem("queueMarkov", true);
-    localStorage.setItem("MAT", value);
+    localStorage.setItem("MAT", event.target.value);
   };
 
   // const handleChange = (event) =>

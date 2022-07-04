@@ -9,7 +9,6 @@ import {
   Divider,
   useTheme,
   InputLabel,
-  TextField,
   FormControl,
   Select,
   MenuItem,
@@ -36,8 +35,6 @@ import { Markov } from "./markov";
 
 
 import { makeStyles } from "@mui/styles";
-
-import Autocomplete from '@mui/material/Autocomplete';
 
 import { matetrialCall } from "src/utils/apihelper";
 
@@ -335,12 +332,12 @@ export const LongRunAndMarkov = (props) => {
     <MenuItem value={item.toString()} >{item}</MenuItem>
   ));
 
-  const handler = (event, value) => {
-    setMaterialID(value);
-    localStorage.setItem("materialID", value);
+  const handler = (event) => {
+    setMaterialID(event.target.value);
+    localStorage.setItem("materialID", event.target.value);
     setMaterialSelected(true);
     localStorage.setItem("queueMarkov", true);
-    localStorage.setItem("MAT", value);
+    localStorage.setItem("MAT", event.target.value);
   };
 
   // const handleChange = (event) =>
@@ -356,7 +353,7 @@ export const LongRunAndMarkov = (props) => {
     <CardHeader
           action={
             <FormControl style={{ width: 300 }}>
-                {/* <InputLabel id="Select Material">Material</InputLabel>
+                <InputLabel id="Select Material">Material</InputLabel>
                 <Select
                 value={materialID}
                 label="Age"
@@ -364,17 +361,7 @@ export const LongRunAndMarkov = (props) => {
                 >
                   {menuItems}
 
-                </Select> */}
-
-                <Autocomplete
-                  disablePortal
-                  id="combo-box-demo"
-                  options={plannerMaterials}
-                  value={materialID}
-                  sx={{ width: 300 }}
-                  onChange={handler}
-                  renderInput={(params) => <TextField {...params} label="Select Material" />}
-                />
+                </Select>
             </FormControl>
           }
           title="Long Run"

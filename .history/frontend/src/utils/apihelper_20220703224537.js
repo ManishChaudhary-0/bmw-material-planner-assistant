@@ -2,7 +2,7 @@ import axios from "axios";
 import { apiUrl, plannerId } from "./constants";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { ContactsOutlined, LocalHospitalTwoTone } from "@mui/icons-material";
+import { ContactsOutlined } from "@mui/icons-material";
 
 let token = "";
 let headers = "";
@@ -46,7 +46,6 @@ const notify = (message, status) => {
     toast(message);
   }
 };
-
 
 const handleError = (err) => {
   console.log("erros", err);
@@ -239,11 +238,10 @@ const feedbackCall = () => {
       .post(url, header)
       .then((res) => {
         resolve(res.data);
-        localStorage.setItem("FEEDBACK_API_Status", res.status);
       })
       .catch((err) => {
         reject(handleError(err));
-        console.log("RES: ", err.response.status);
+        console.log("RES: ", err.response.data.detail);
       });
   });
 };
