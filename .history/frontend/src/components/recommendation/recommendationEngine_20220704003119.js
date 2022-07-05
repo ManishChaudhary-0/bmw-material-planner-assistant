@@ -248,7 +248,7 @@ const themeButton = createTheme({
 
         <CardContent display="flex">
 
-          {loading ? <LinearProgress /> : 
+          {loading ? <LinearProgress /> : <LinearProgress /> }
 
             <Typography paragraph variant="subtitle1" gutterBottom component="div">
 
@@ -256,7 +256,6 @@ const themeButton = createTheme({
 
             {/* {dddd.advice} */}
             </Typography>
-          }
 
           <Box
             sx={{
