@@ -119,10 +119,12 @@ async function loadMaterials()  {
 };
 
 async function getrec() {
+  setLoading(true);
   let recommData = await recommendationCall();
   console.log("RECOMMENDATION CALL: ", recommData);
   setRecommendationText(recommData.advice);
   setTransaction(recommData.transaction);
+  setLoading(false);
 }
 
 async function feedback() {
@@ -132,7 +134,7 @@ async function feedback() {
   let feedbackData = await feedbackCall();
   console.log("FEEDBACK CALL: ", feedbackData);
   setFeedbackAPI_problem(feedbackData.problem);
-  let status = localStorage.geItem("FEEDBACK_API_Status");
+  let status = localStorage.getItem("FEEDBACK_API_Status");
   notifySubmit("Feedback Submitted", status, feedbackAPI_problem);
 
 }
@@ -168,16 +170,14 @@ const dddd = {
 const handleReject = () => {
   setReject(true);
   setRecommendationAccepted("no");
-  notifySuccess("Recommendation Decision Sent : Reject");
+  notifySuccess("Recommendation Decision: Reject");
 }
 
 
 const handleAccept = () => {
   setReject(false);
   setRecommendationAccepted("yes");
-  notifySuccess("Recommendation Decision Sent : Accept");
-  
-
+  notifySuccess("Recommendation Decision: Accept");
 }
 
 
