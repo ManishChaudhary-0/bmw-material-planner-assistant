@@ -167,7 +167,7 @@ export const LongRunAndMarkov = (props) => {
         data: [l],
         stack: "",
         // backgroundColor: "#FF0000",
-        backgroundColor: "#d70d13",
+        backgroundColor: "#f83636",
 
       },
     ],
@@ -288,7 +288,7 @@ export const LongRunAndMarkov = (props) => {
         data: [threeValue],
         stack: "",
         //backgroundColor: "#FF0000",
-        backgroundColor: "#d70d13",
+        backgroundColor: "#f83636",
 
       },
     ],

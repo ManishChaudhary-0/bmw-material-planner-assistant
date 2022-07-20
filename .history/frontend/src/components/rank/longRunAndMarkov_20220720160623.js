@@ -159,16 +159,14 @@ export const LongRunAndMarkov = (props) => {
         data: [ot],
         stack: "",
         // backgroundColor: "#00FF00",
-        backgroundColor: "#08dc4d",
+        backgroundColor: "#22c457",
 
       },
       {
         label: "Late",
         data: [l],
         stack: "",
-        // backgroundColor: "#FF0000",
-        backgroundColor: "#d70d13",
-
+        backgroundColor: "#FF0000",
       },
     ],
     labels: ["Arrival Probabilities"],
@@ -238,58 +236,44 @@ export const LongRunAndMarkov = (props) => {
         label: "-3",
         data: [negThreeValue],
         stack: "",
-        // backgroundColor: "#FFC100",
-        backgroundColor: "#ffca2a",
-
+        backgroundColor: "#FFC100",
       },
       {
         label: "-2",
         data: [negTwoValue],
         stack: "",
-        // backgroundColor: "#FED862",
-        backgroundColor: "#ffd659",
-
+        backgroundColor: "#FED862",
       },
       {
         label: "-1",
         data: [negOneValue],
         stack: "",
-        // backgroundColor: "#FCE290",
-        backgroundColor: "#ffe288",
-
+        backgroundColor: "#FCE290",
       },
 
       {
         label: "0",
         data: [zeroValue],
         stack: "",
-        // backgroundColor: "#00FF00",
-        backgroundColor: "#08dc4d",
-
+        backgroundColor: "#00FF00",
       },
       {
         label: "1",
         data: [oneValue],
         stack: "",
-        // backgroundColor: "#FAA2A2",
-        backgroundColor: "#f77a7d",
-
+        backgroundColor: "#FAA2A2",
       },
       {
         label: "2",
         data: [twoValue],
         stack: "",
-        // backgroundColor: "#FC6A6A",
-        backgroundColor: "#f3373d",
-
+        backgroundColor: "#FC6A6A",
       },
       {
         label: "3",
         data: [threeValue],
         stack: "",
-        //backgroundColor: "#FF0000",
-        backgroundColor: "#d70d13",
-
+        backgroundColor: "#FF0000",
       },
     ],
     labels: ["Arrival Probabilities"],
