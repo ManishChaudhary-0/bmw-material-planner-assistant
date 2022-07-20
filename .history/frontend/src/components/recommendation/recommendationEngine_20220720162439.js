@@ -258,9 +258,8 @@ const themeButton = createTheme({
             alignItems="flex-end"
           >
             <ButtonGroup disableElevation variant="contained"  sx={{ height: 60,fontSize:20, width:'20%'}}>
-              
-              <Button sx={{width:'50%', fontSize:20, fontWeight:0}} theme={themeButton} onClick={handleReject} color={!reject ? "inherit" : "secondary"}>Reject</Button>
               <Button sx={{width:'50%', fontSize:20, fontWeight:0}} theme={themeButton} onClick={handleAccept} color={reject ? "inherit" : "primary"}>Agree</Button>
+              <Button sx={{width:'50%', fontSize:20, fontWeight:0}} theme={themeButton} onClick={handleReject} color={!reject ? "inherit" : "secondary"}>Reject</Button>
             </ButtonGroup>
           </Box>
 
