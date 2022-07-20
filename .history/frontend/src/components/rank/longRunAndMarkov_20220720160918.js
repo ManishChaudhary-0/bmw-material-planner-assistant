@@ -167,7 +167,7 @@ export const LongRunAndMarkov = (props) => {
         data: [l],
         stack: "",
         // backgroundColor: "#FF0000",
-        backgroundColor: "#d70d13",
+        backgroundColor: "#f83636",
 
       },
     ],
@@ -239,7 +239,7 @@ export const LongRunAndMarkov = (props) => {
         data: [negThreeValue],
         stack: "",
         // backgroundColor: "#FFC100",
-        backgroundColor: "#ffca2a",
+        backgroundColor: "#FFC100",
 
       },
       {
@@ -247,7 +247,7 @@ export const LongRunAndMarkov = (props) => {
         data: [negTwoValue],
         stack: "",
         // backgroundColor: "#FED862",
-        backgroundColor: "#ffd659",
+        backgroundColor: "#FED862",
 
       },
       {
@@ -255,7 +255,7 @@ export const LongRunAndMarkov = (props) => {
         data: [negOneValue],
         stack: "",
         // backgroundColor: "#FCE290",
-        backgroundColor: "#ffe288",
+        backgroundColor: "#FCE290",
 
       },
 
@@ -264,7 +264,7 @@ export const LongRunAndMarkov = (props) => {
         data: [zeroValue],
         stack: "",
         // backgroundColor: "#00FF00",
-        backgroundColor: "#08dc4d",
+        backgroundColor: "#00FF00",
 
       },
       {
@@ -272,7 +272,7 @@ export const LongRunAndMarkov = (props) => {
         data: [oneValue],
         stack: "",
         // backgroundColor: "#FAA2A2",
-        backgroundColor: "#f77a7d",
+        backgroundColor: "#FAA2A2",
 
       },
       {
@@ -280,7 +280,7 @@ export const LongRunAndMarkov = (props) => {
         data: [twoValue],
         stack: "",
         // backgroundColor: "#FC6A6A",
-        backgroundColor: "#f3373d",
+        backgroundColor: "#FC6A6A",
 
       },
       {
@@ -288,7 +288,7 @@ export const LongRunAndMarkov = (props) => {
         data: [threeValue],
         stack: "",
         //backgroundColor: "#FF0000",
-        backgroundColor: "#d70d13",
+        backgroundColor: "#FF0000",
 
       },
     ],
