@@ -140,7 +140,7 @@ export const ExceptionManager = (props) => {
 
         title: {
           display: true,
-          text: "Percantages",
+          text: "Percentages",
           color: "black",
         },
       },
