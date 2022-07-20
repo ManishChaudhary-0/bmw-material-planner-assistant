@@ -64,10 +64,27 @@ const items = [
   // }
 ];
 
+
+const AdminItems = [
+  {
+    href: "/feedbackAnalysis",
+    icon: <FontAwesomeIcon icon={faAtom} />,
+    title: "Recommendation Feedback Analysis",
+  },
+  {
+    href: "/login",
+    icon: <UserAddIcon fontSize="small" />,
+    title: "Log out",
+  },
+];
+
+
 export const DashboardSidebar = (props) => {
   const [username, setUsername] = useState("");
 
   const [preSetName, setPreSetName] = useState("");
+
+  const[isAdmin, setIsAdmin] = useState(false);
 
   const { open, onClose } = props;
   const router = useRouter();
@@ -110,6 +127,10 @@ export const DashboardSidebar = (props) => {
     }
     else if (name == "M11"){
       setUsername("Liliana Banda");
+    }
+    else if (name == "admin") {
+      setUsername("Admin");
+      setIsAdmin(true);
     }
 
 
@@ -173,13 +194,6 @@ export const DashboardSidebar = (props) => {
 
                   {username.split(" ").join(".")}
 
-
-
-
-
-
-
-
                   <br />
                   {Date(Date.now()).slice(4, 15)}
                 </Typography>
@@ -206,7 +220,25 @@ export const DashboardSidebar = (props) => {
             my: 3,
           }}
         />
-        <Box sx={{ flexGrow: 1 }}>
+
+
+        { isAdmin ? 
+
+          <Box sx={{ flexGrow: 1 }}>
+            {AdminItems.map((item) => (
+              <NavItem
+                onClick={() => {
+                  item.title == "Log out" ? localStorage.clear() : null;
+                }}
+                key={item.title}
+                icon={item.icon}
+                href={item.href}
+                title={item.title}
+              />
+            ))}
+          </Box>
+          :
+          <Box sx={{ flexGrow: 1 }}>
           {items.map((item) => (
             <NavItem
               onClick={() => {
@@ -217,8 +249,13 @@ export const DashboardSidebar = (props) => {
               href={item.href}
               title={item.title}
             />
-          ))}
-        </Box>
+            ))}
+          </Box>
+        }
+
+
+
+
         <Divider sx={{ borderColor: "#2D3748" }} />
         {/* <Box
           sx={{

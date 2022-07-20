@@ -248,6 +248,27 @@ const feedbackCall = () => {
   });
 };
 
+const engineAnalysisCall = () => {
+  var startDate = localStorage.getItem("Start-Date");
+  var endDate = localStorage.getItem("End-Date");
+
+  console.log("API-StartDate", startDate);
+  console.log("API-EndDate", endDate);
+
+  const url = `http://10.81.41.200:8000/mpa/review?from=${startDate}&thru=${endDate}`;
+  return new Promise((resolve, reject) => {
+    const header = getRecommendationEngineHeader();
+    axios
+      .get(url, header)
+      .then((res) => {
+        resolve(res.data);
+      })
+      .catch((err) => {
+        reject(handleError(err));
+      });
+  });
+};
+
 
 
 
@@ -261,4 +282,5 @@ export {
   rankCall,
   recommendationCall,
   feedbackCall,
+  engineAnalysisCall,
 };
