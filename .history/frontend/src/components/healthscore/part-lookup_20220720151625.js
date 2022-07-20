@@ -769,6 +769,83 @@ export const PartLookUp = (props) => {
                   </Box>
                 </Modal>
 
+                <>
+                  {!table1Loading
+                    ? v1?.material_detail?.map((order, index) => {
+                        return (
+                          <StyledTableRow
+                            hover
+                            key={Math.random()}
+                            // onClick={()=>{setSelectedMaterial(healthScore.slice(index,index+1))}}
+                          >
+                            <StyledTableCell style={{ width: "10%" }}>{order.material}</StyledTableCell>
+                            <StyledTableCell>
+                              {/* {healthResponse.Date} */}
+                              {/* <input
+                                type="date"
+                                value={startDate}
+                                 onChange={(e) => setStartDate(e.target.value)}
+                              /> */}
+                              {date}
+                            </StyledTableCell>
+                            {/* <TableCell>{order.material_9}</TableCell>
+                            <TableCell>{order.material_7}</TableCell> */}
+
+                            {/* <TableCell>
+                            <span style={ returnColor(Number(order.healthstatus)) } onClick={()=>{ props.setHealthGuage(order.healthstatus) }} >{order.healthstatus}</span> 
+                            </TableCell> */}
+
+                            <StyledTableCell>{order.mat_description_eng}</StyledTableCell>
+
+                            {/* <TableCell>{order.mat_description_eng}</TableCell> */}
+
+                            <StyledTableCell style={{ textAlign: "center" }}>
+                            <span style={returnColor(healthguage)}> {healthguage} %</span>
+                              {/* <TrafficByDevice
+                                healthGuage={healthGuage}
+                                setHealthGuage={setHealthGuage}
+                                sx={{ height: "100px" }}
+                              /> */}
+                            </StyledTableCell>
+
+                            <StyledTableCell>
+                              <Box
+                                sx={
+                                  {
+                                    // display: 'flex',
+                                    // marginTop:"-7%",
+                                    // paddingBottom:"2%",
+                                    // justifyContent: 'center',
+                                    // p: 3
+                                  }
+                                }
+                              >
+                                <Button
+                                  onClick={() => {
+                                    SetShowmodal(true);
+                                  }}
+                                >
+                                  Show Analysis
+                                </Button>
+                              </Box>
+                            </StyledTableCell>
+                          </StyledTableRow>
+                        );
+                      })
+                    : Array.from({ length: 2 }, (_, i) => (
+                        <tr key={i}>
+                          <td colSpan="8">
+                            <Shimmer>
+                              <div style={{ width: "100%" }}>&nbsp;</div>
+                            </Shimmer>
+                          </td>
+                        </tr>
+                      ))}
+                </>
+
+
+                {/* ---------------------------------------------------------------------------------------------------- */}
+
 
 
              

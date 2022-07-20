@@ -33,11 +33,11 @@ import {
             <TableRow>
 
 
-                <StyledTableCell key="Material" style={{ textAlign: "left" }}>
+                <StyledTableCell key="material" style={{ textAlign: "left" }}>
                     <TableSortLabel 
-                        active={valueToOrderBy === "Material"}
-                        direction={valueToOrderBy === "Material" ? orderDirection : 'asc'}
-                        onClick={createSortHandler("Material")}
+                        active={valueToOrderBy === "material"}
+                        direction={valueToOrderBy === "material" ? orderDirection : 'asc'}
+                        onClick={createSortHandler("material")}
                         >
                             MATERIAL ID
                         </TableSortLabel>
