@@ -40,7 +40,7 @@ const items = [
   {
     href: "/ranking",
     icon: <FontAwesomeIcon icon={faRankingStar} />,
-    title: "Part Ranking",
+    title: "Delivery Probabilities",
   },
   {
     href: "/engine",
