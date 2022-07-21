@@ -103,7 +103,7 @@ export const Analysis = (props) => {
         localStorage.setItem("End-Date", formatYmd(endDate));
         console.log("!!!");
         let data = await engineAnalysisCall();
-        setTotalMatrixData(data);
+        TotalMatrixData(data);
         console.log("DATA", data);
         setLoading(false);
 
