@@ -45,9 +45,10 @@ import LinearProgress from '@mui/material/LinearProgress';
 import Autocomplete from '@mui/material/Autocomplete';
 
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
+import { LocalizationProvider } from '@mui/x-date-pickers-pro';
+import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
+import { AdapterDateFns } from '@mui/x-date-pickers-pro/AdapterDateFns';
 
 import { engineAnalysisCall } from 'src/utils/apihelper';
 import PerfectScrollbar from "react-perfect-scrollbar";
@@ -131,37 +132,32 @@ export const Analysis = (props) => {
                         renderInput={(params) => <TextField {...params} label="Select Material" />}
                       /> */}
 
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DesktopDatePicker
+                    label="Start Date"
+                    value={startDate}
+                    onChange={(newValue) => {
+                        setStartDate(newValue);
+                    }}
+                    minDate={new Date('2017-01-01')}
+                    renderInput={(params) => <TextField {...params} />}
+                    />
 
+                    <Typography padding="5%">
+                        {/* To */}
 
-                        <DesktopDatePicker
-                            label="Start Date"
-                            value={startDate}
-                            onChange={(newValue) => {
-                                setStartDate(newValue);
-                            }}
-                            minDate={new Date('2017-01-01')}
-                            renderInput={(params) => <TextField {...params} />}
-                        />
+                    </Typography>
 
-                            <Typography padding="5%">
-                                {/* To */}
+                    <DesktopDatePicker
+                    label="End Date"
+                    value={endDate}
+                    onChange={(newValue) => {
+                        setEndDate(newValue);
+                        setDateLoaded(true);
 
-                            </Typography>
-
-                        <DesktopDatePicker
-                            label="End Date"
-                            value={endDate}
-                            onChange={(newValue) => {
-                                setEndDate(newValue);
-                                setDateLoaded(true);
-
-                            }}
-                            minDate={new Date('2017-01-01')}
-                            renderInput={(params) => <TextField {...params} />}
-                        />
-
-                    </LocalizationProvider>
+                    }}
+                    minDate={new Date('2017-01-01')}
+                    renderInput={(params) => <TextField {...params} />}
+                    />
 
 
                     {/* <LocalizationProvider

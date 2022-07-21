@@ -45,9 +45,9 @@ import LinearProgress from '@mui/material/LinearProgress';
 import Autocomplete from '@mui/material/Autocomplete';
 
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-
+import { LocalizationProvider } from '@mui/x-date-pickers-pro';
+import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
+import { AdapterDateFns } from '@mui/x-date-pickers-pro/AdapterDateFns';
 
 import { engineAnalysisCall } from 'src/utils/apihelper';
 import PerfectScrollbar from "react-perfect-scrollbar";
