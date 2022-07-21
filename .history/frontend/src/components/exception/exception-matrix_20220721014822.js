@@ -131,15 +131,15 @@ export const LatestOrders = (props) => {
       borderRadius: "25px 25px",
     };
 
-    const lightred = {
+    const maroon = {
       color: "white",
-      backgroundColor: "#EA4C46",
+      backgroundColor: "maroon",
       padding: "5px 20px",
       borderRadius: "25px 25px",
     };
 
     if (status < 20) {
-      return lightred;
+      return maroon;
     }
 
     if (status > 20 && status < 60) {
@@ -357,7 +357,7 @@ export const ExceptionMatrix = (props) => {
     //   }
     // });
 
-    const data = await ExceptionMatrixCall("365");
+    const data = await ExceptionMatrixCall("60");
     // data = data.data
 
     if (data.status === 403) {
@@ -386,7 +386,7 @@ export const ExceptionMatrix = (props) => {
                 <StyledTableCell>Material ID</StyledTableCell>
                 <StyledTableCell>Material_7</StyledTableCell>
                 <StyledTableCell>Material_9</StyledTableCell>
-                <StyledTableCell>ExceptionCount</StyledTableCell>
+                <StyledTableCell2>ExceptionCount</StyledTableCell2>
                 {/* <TableCell sortDirection="desc">
                 <Tooltip
                   enterDelay={300}
@@ -439,13 +439,11 @@ export const ExceptionMatrix = (props) => {
 
                   <StyledTableCell style={{ textAlign: "center" }}>
                     {/* {order.ExceptionCount} */}
-                    {/* {order[0].count} */}
-                    <span style={returnColor(order[0].count)}> {order[0].count}</span>
-
+                    {order[0].count}
                   </StyledTableCell>
                   <StyledTableCell style={{ textAlign: "center" }}>
-                    {/* {order[0].percentage.toString().slice(0, 4) + " %"} */}
-                    <span style={returnColor(order[0].percentage.toString().slice(0, 4))}> {order[0].percentage.toString().slice(0, 4) + " %"}</span>
+                    {/* {(order.Percentage*100).toString().slice(0,4) + "%"} */}
+                    {order[0].percentage.toString().slice(0, 4) + " %"}
                   </StyledTableCell>
                   <StyledTableCell>
                     {/* {order.PartDescription} */}
@@ -496,17 +494,6 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
 }));
 
-const StyledTableCell2 = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: "#000000", // Change to hex code
-    color: theme.palette.common.black,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 16,
-    backgroundColor: "#C4C4C4"
-  },
-}));
-
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   '&:nth-of-type(odd)': {
     backgroundColor: theme.palette.action.hover,
@@ -514,5 +501,16 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   // hide last border
   '&:last-child td, &:last-child th': {
     border: 0,
+  },
+}));
+
+const StyledTableCell2 = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    //  backgroundColor: theme.palette.common.black, // Change to hex code
+    backgroundColor: "#000000", // Change to hex code
+    color: theme.palette.common.black,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
   },
 }));

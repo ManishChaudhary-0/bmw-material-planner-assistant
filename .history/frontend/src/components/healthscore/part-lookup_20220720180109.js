@@ -513,190 +513,6 @@ export const PartLookUp = (props) => {
   const [callAPI, setCallAPI] = useState(false);
 
 
-<<<<<<< HEAD
-
-  const [orderDirection, setOrderDirection] = useState('asc');
-  const [valueToOrderBy, setValueToOrderBy] = useState('Material');
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(1);
-
-
-
-  const handleRequestSort = (event, property) => {
-    const isAscending = (valueToOrderBy === property && orderDirection === 'asc');
-    setValueToOrderBy(property);
-    setOrderDirection(isAscending ? 'desc' : 'asc');
-  }
-
-  function descendingComparator(a, b, orderBy) {
-    if (Number(b[orderBy]) < Number(a[orderBy])) {
-      return -1
-    }
-    if (Number(b[orderBy]) > Number(a[orderBy])) {
-      return 1
-    }
-    return 0
-
-
-  }
-
-  function getComparator(order, orderBy){
-    return order === "desc"
-      ? (a,b) => descendingComparator(a,b, orderBy)
-      : (a,b) => -descendingComparator(a,b, orderBy)
-  }
-
-  const sortedRowInformation = (rowArray, comparator) => {
-    const stabilizedRowArray = rowArray?.map((order, index) => [order, index]);
-    stabilizedRowArray?.sort((a,b) => {
-      const order = comparator(a[0], b[0]);
-      if(order !==0) return order
-      return Number(a[1]) - Number(b[1])
-    })
-    return stabilizedRowArray?.map((order) => order[0])
-  }
-
-
-
-
-  const showAnalysis = (index) => {
-
-    console.log("AA-INDEX", index);
-
-    style = {
-      // transform: "translate(center)",
-      width: "70%",
-      margin:"5% 25%",
-      bgcolor: "background.paper",
-      boxShadow: 24,
-      p: 4,
-      height: "770px",
-      overflow: "scroll",
-      textAlign: "center",
-    };
-
-    options1 = {
-      responsive: true,
-      plugins: {
-        legend: {
-          // position: 'top' as const,
-        },
-        datalabels: {
-          offset: 0,
-          display:"auto",
-          anchor: "center",
-          align: "top",
-          font: {
-            size: "15",
-            weight: "bold",
-          },
-        },
-  
-        title: {
-          display: true,
-          text: "Health Score Analysis of Material",
-        },
-      },
-    };
-  
-    options2 = {
-      responsive: true,
-      plugins: {
-        legend: {
-          // position: 'top' as const,
-        },
-        datalabels: {
-          offset: 5,
-          display:"auto",
-          anchor: "center",
-          align: "top",
-          clamp: true,
-          font: {
-            size: "15",
-            weight: "bold",
-          },
-        },
-        title: {
-          display: true,
-          text: "Health Score Analysis of Material",
-        },
-      },
-    };
-
-    const labels = aa[index]?.total_qty_analysis?.map((val) => {
-      return val.demand_date;
-    });
-
-    dataDetail_1 = {
-      labels,
-      datasets: [
-        {
-          label: "Total Quantity",
-          data: aa[index]?.total_qty_instances?.map((val) => {
-            return val.total_quantity;
-          }),
-          borderColor: "rgb(255, 99, 132)",
-          backgroundColor: "rgba(255, 99, 132, 0.5)",
-        },
-
-        {
-          label: "Safety Stock",
-          data: aa[index]?.total_qty_instances?.map((val) => {
-            return val["safety stock"];
-          }),
-          borderColor: "rgb(233, 155, 0)",
-          backgroundColor: "rgba(233, 155, 0, 0.5)",
-        },
-      ],
-    };
-
-    data1 = {
-      labels,
-      datasets: [
-        {
-          label: "Min of Total Quantity",
-          data: aa[index]?.total_qty_analysis?.map((val) => {
-            return val.min;
-          }),
-          borderColor: "rgb(255, 99, 132)",
-          backgroundColor: "rgba(255, 99, 132, 0.5)",
-        },
-        {
-          label: "Max of Total Quantity",
-          data: aa[index]?.total_qty_analysis?.map((val) => {
-            return val.max;
-          }),
-          borderColor: "rgb(53, 162, 235)",
-          backgroundColor: "rgba(53, 162, 235, 0.5)",
-        },
-        {
-          label: "Mean of Total Quantity",
-          data: aa[index]?.total_qty_analysis?.map((val) => {
-            return val.mean;
-          }),
-          borderColor: "rgb(3, 155, 0)",
-          backgroundColor: "rgba(3, 155, 0, 0.5)",
-        },
-        {
-          label: "Safety Stock",
-          data: aa[index]?.total_qty_analysis?.map((val) => {
-            return val["safety stock"];
-          }),
-          borderColor: "rgb(233, 155, 0)",
-          backgroundColor: "rgba(233, 155, 0, 0.5)",
-        },
-      ],
-    };
-
-
-    SetShowmodal(true);
-
-  }
-
-
-
-=======
->>>>>>> 2b824bfd92f24472e191efec2e75211d55084c8d
   useEffect(async () => {
 
     user = localStorage.getItem("plannerId");
@@ -782,47 +598,11 @@ export const PartLookUp = (props) => {
 
       SetTable1Loading(false);
 
-<<<<<<< HEAD
-      const mergedObject = {
-        ...healthScoreResponse,
-        ...healthScoreResponse2,
-        ...healthScoreResponse3,
-        ...healthScoreResponse4,
-        ...healthScoreResponse5
-      };
-
-      aa.push(healthScoreResponse);
-      aa.push(healthScoreResponse2);
-      aa.push(healthScoreResponse3);
-      aa.push(healthScoreResponse4);
-      aa.push(healthScoreResponse5);
-      
-      setV1([...v1, aa]);
-
-      console.log("MO", mergedObject);
-      console.log("V1", v1);
-      console.log("AA-MAP", aa);
-
-
-      aa.map((value, index) => {
-        console.log("AA-MAP", value.Material);
-        console.log("AA-MAP", value.Date);
-        console.log("AA-MAP", value.material_detail[0].mat_description_eng);
-
-      } )
-
-       sethealthResponse(healthScoreResponse);
-       sethealthResponse2(healthScoreResponse2);
-       sethealthResponse3(healthScoreResponse3);
-       sethealthResponse4(healthScoreResponse4);
-       sethealthResponse5(healthScoreResponse5);
-=======
       sethealthResponse(healthScoreResponse);
       sethealthResponse2(healthScoreResponse2);
       sethealthResponse3(healthScoreResponse3);
       sethealthResponse4(healthScoreResponse4);
       sethealthResponse5(healthScoreResponse5);
->>>>>>> 2b824bfd92f24472e191efec2e75211d55084c8d
 
       console.log("HealthResponse5: ", healthResponse5);
    // }
@@ -1586,10 +1366,7 @@ export const PartLookUp = (props) => {
 
                         <StyledTableCell>{order.mat_description_eng}</StyledTableCell>
 
-                        <StyledTableCell style={{ textAlign: "center" }}>
-                        <span style={returnColor(order.safety_stock)}> {order.safety_stock}</span>
-                          {/* {order.safety_stock} */}
-                        </StyledTableCell>
+                        <StyledTableCell style={{ textAlign: "center" }}>{order.safety_stock}</StyledTableCell>
 
                         <StyledTableCell>{order.plant}</StyledTableCell>
 
@@ -1680,7 +1457,6 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     fontSize: 14,
   },
 }));
-
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   '&:nth-of-type(odd)': {

@@ -131,15 +131,15 @@ export const LatestOrders = (props) => {
       borderRadius: "25px 25px",
     };
 
-    const lightred = {
+    const maroon = {
       color: "white",
-      backgroundColor: "#EA4C46",
+      backgroundColor: "maroon",
       padding: "5px 20px",
       borderRadius: "25px 25px",
     };
 
     if (status < 20) {
-      return lightred;
+      return maroon;
     }
 
     if (status > 20 && status < 60) {
@@ -357,7 +357,7 @@ export const ExceptionMatrix = (props) => {
     //   }
     // });
 
-    const data = await ExceptionMatrixCall("365");
+    const data = await ExceptionMatrixCall("60");
     // data = data.data
 
     if (data.status === 403) {
@@ -439,13 +439,11 @@ export const ExceptionMatrix = (props) => {
 
                   <StyledTableCell style={{ textAlign: "center" }}>
                     {/* {order.ExceptionCount} */}
-                    {/* {order[0].count} */}
-                    <span style={returnColor(order[0].count)}> {order[0].count}</span>
-
+                    {order[0].count}
                   </StyledTableCell>
                   <StyledTableCell style={{ textAlign: "center" }}>
-                    {/* {order[0].percentage.toString().slice(0, 4) + " %"} */}
-                    <span style={returnColor(order[0].percentage.toString().slice(0, 4))}> {order[0].percentage.toString().slice(0, 4) + " %"}</span>
+                    {/* {(order.Percentage*100).toString().slice(0,4) + "%"} */}
+                    {order[0].percentage.toString().slice(0, 4) + " %"}
                   </StyledTableCell>
                   <StyledTableCell>
                     {/* {order.PartDescription} */}
@@ -506,6 +504,7 @@ const StyledTableCell2 = styled(TableCell)(({ theme }) => ({
     backgroundColor: "#C4C4C4"
   },
 }));
+
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   '&:nth-of-type(odd)': {

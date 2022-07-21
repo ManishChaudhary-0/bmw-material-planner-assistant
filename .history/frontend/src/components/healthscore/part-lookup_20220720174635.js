@@ -7,6 +7,7 @@ import {
   Table,
   TableBody,
   TableCell,
+  Tooltip,
   TableHead,
   TableRow,
   TableSortLabel,
@@ -15,6 +16,16 @@ import {
 import { healthScoreCall, matetrialCall } from "../../utils/apihelper";
 import { TrafficByDevice } from "../../components/healthscore/traffic-by-device";
 
+// import {
+//   Chart as ChartJS,
+//   CategoryScale,
+//   LinearScale,
+//   PointElement,
+//   LineElement,
+//   Title,
+//   Tooltip,
+//   Legend,
+// } from 'chart.js';
 
 import { Line } from "react-chartjs-2";
 
@@ -48,6 +59,8 @@ function sortByProperty(property) {
   };
 }
 
+
+
 export const PartLookUp = (props) => {
   
   const classStyle = useStyles();
@@ -78,11 +91,11 @@ export const PartLookUp = (props) => {
   const style = {
     // transform: "translate(center)",
     width: "70%",
-    margin:"5% 20%",
+    margin:"5% 25%",
     bgcolor: "background.paper",
     boxShadow: 24,
     p: 4,
-    height: "550px",
+    height: "770px",
     overflow: "scroll",
     textAlign: "center",
   };
@@ -513,190 +526,6 @@ export const PartLookUp = (props) => {
   const [callAPI, setCallAPI] = useState(false);
 
 
-<<<<<<< HEAD
-
-  const [orderDirection, setOrderDirection] = useState('asc');
-  const [valueToOrderBy, setValueToOrderBy] = useState('Material');
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(1);
-
-
-
-  const handleRequestSort = (event, property) => {
-    const isAscending = (valueToOrderBy === property && orderDirection === 'asc');
-    setValueToOrderBy(property);
-    setOrderDirection(isAscending ? 'desc' : 'asc');
-  }
-
-  function descendingComparator(a, b, orderBy) {
-    if (Number(b[orderBy]) < Number(a[orderBy])) {
-      return -1
-    }
-    if (Number(b[orderBy]) > Number(a[orderBy])) {
-      return 1
-    }
-    return 0
-
-
-  }
-
-  function getComparator(order, orderBy){
-    return order === "desc"
-      ? (a,b) => descendingComparator(a,b, orderBy)
-      : (a,b) => -descendingComparator(a,b, orderBy)
-  }
-
-  const sortedRowInformation = (rowArray, comparator) => {
-    const stabilizedRowArray = rowArray?.map((order, index) => [order, index]);
-    stabilizedRowArray?.sort((a,b) => {
-      const order = comparator(a[0], b[0]);
-      if(order !==0) return order
-      return Number(a[1]) - Number(b[1])
-    })
-    return stabilizedRowArray?.map((order) => order[0])
-  }
-
-
-
-
-  const showAnalysis = (index) => {
-
-    console.log("AA-INDEX", index);
-
-    style = {
-      // transform: "translate(center)",
-      width: "70%",
-      margin:"5% 25%",
-      bgcolor: "background.paper",
-      boxShadow: 24,
-      p: 4,
-      height: "770px",
-      overflow: "scroll",
-      textAlign: "center",
-    };
-
-    options1 = {
-      responsive: true,
-      plugins: {
-        legend: {
-          // position: 'top' as const,
-        },
-        datalabels: {
-          offset: 0,
-          display:"auto",
-          anchor: "center",
-          align: "top",
-          font: {
-            size: "15",
-            weight: "bold",
-          },
-        },
-  
-        title: {
-          display: true,
-          text: "Health Score Analysis of Material",
-        },
-      },
-    };
-  
-    options2 = {
-      responsive: true,
-      plugins: {
-        legend: {
-          // position: 'top' as const,
-        },
-        datalabels: {
-          offset: 5,
-          display:"auto",
-          anchor: "center",
-          align: "top",
-          clamp: true,
-          font: {
-            size: "15",
-            weight: "bold",
-          },
-        },
-        title: {
-          display: true,
-          text: "Health Score Analysis of Material",
-        },
-      },
-    };
-
-    const labels = aa[index]?.total_qty_analysis?.map((val) => {
-      return val.demand_date;
-    });
-
-    dataDetail_1 = {
-      labels,
-      datasets: [
-        {
-          label: "Total Quantity",
-          data: aa[index]?.total_qty_instances?.map((val) => {
-            return val.total_quantity;
-          }),
-          borderColor: "rgb(255, 99, 132)",
-          backgroundColor: "rgba(255, 99, 132, 0.5)",
-        },
-
-        {
-          label: "Safety Stock",
-          data: aa[index]?.total_qty_instances?.map((val) => {
-            return val["safety stock"];
-          }),
-          borderColor: "rgb(233, 155, 0)",
-          backgroundColor: "rgba(233, 155, 0, 0.5)",
-        },
-      ],
-    };
-
-    data1 = {
-      labels,
-      datasets: [
-        {
-          label: "Min of Total Quantity",
-          data: aa[index]?.total_qty_analysis?.map((val) => {
-            return val.min;
-          }),
-          borderColor: "rgb(255, 99, 132)",
-          backgroundColor: "rgba(255, 99, 132, 0.5)",
-        },
-        {
-          label: "Max of Total Quantity",
-          data: aa[index]?.total_qty_analysis?.map((val) => {
-            return val.max;
-          }),
-          borderColor: "rgb(53, 162, 235)",
-          backgroundColor: "rgba(53, 162, 235, 0.5)",
-        },
-        {
-          label: "Mean of Total Quantity",
-          data: aa[index]?.total_qty_analysis?.map((val) => {
-            return val.mean;
-          }),
-          borderColor: "rgb(3, 155, 0)",
-          backgroundColor: "rgba(3, 155, 0, 0.5)",
-        },
-        {
-          label: "Safety Stock",
-          data: aa[index]?.total_qty_analysis?.map((val) => {
-            return val["safety stock"];
-          }),
-          borderColor: "rgb(233, 155, 0)",
-          backgroundColor: "rgba(233, 155, 0, 0.5)",
-        },
-      ],
-    };
-
-
-    SetShowmodal(true);
-
-  }
-
-
-
-=======
->>>>>>> 2b824bfd92f24472e191efec2e75211d55084c8d
   useEffect(async () => {
 
     user = localStorage.getItem("plannerId");
@@ -731,38 +560,6 @@ export const PartLookUp = (props) => {
     }
 
     SetTable1Loading(true);
-    // const healthScoreResponse = await healthScoreCall("7430935-05", "05/20/21");
-
-
-    // if (is114){
-    //   localStorage.setItem("MAT_1", "7430935-05");
-    //   localStorage.setItem("MAT_2", "7417886-07");
-    //   localStorage.setItem("MAT_3", "8091983-05");
-    //   localStorage.setItem("MAT_4", "7420657-10");
-    //   localStorage.setItem("MAT_5", "8071659-07");
-    // }
-    // if (is177){
-    //   localStorage.setItem("MAT_1", "7470965-04");
-    //   localStorage.setItem("MAT_2", "8075179-08");
-    //   localStorage.setItem("MAT_3", "8746967-10");
-    //   localStorage.setItem("MAT_4", "8075177-10");
-    //   localStorage.setItem("MAT_5", "8097479-03");
-    //   setCallAPI(true);
-    // }
-    // if (is594) {
-    //   localStorage.setItem("MAT_1", "5A11EC1-02");
-    //   localStorage.setItem("MAT_2", "5A11EC4-03");
-    //   localStorage.setItem("MAT_3", "9451274-07");
-    //   localStorage.setItem("MAT_4", "5A11EC3-03");
-    //   localStorage.setItem("MAT_5", "5A11ED1-02");
-    // }
-    // if (isM11){
-    //   localStorage.setItem("MAT_1", "7489481-05");
-    //   localStorage.setItem("MAT_2", "7951486-03");
-    //   localStorage.setItem("MAT_3", "9470159-04");
-    //   localStorage.setItem("MAT_4", "7489482-06");
-    //   localStorage.setItem("MAT_5", "8077652-06");
-    // }
 
     let M1 = localStorage.getItem("MAT_1");
     let M2 = localStorage.getItem("MAT_2");
@@ -771,6 +568,8 @@ export const PartLookUp = (props) => {
     let M5 = localStorage.getItem("MAT_5");
     
    // while (callAPI){
+
+
 
     
       const healthScoreResponse = await healthScoreCall(M1, date);
@@ -782,47 +581,11 @@ export const PartLookUp = (props) => {
 
       SetTable1Loading(false);
 
-<<<<<<< HEAD
-      const mergedObject = {
-        ...healthScoreResponse,
-        ...healthScoreResponse2,
-        ...healthScoreResponse3,
-        ...healthScoreResponse4,
-        ...healthScoreResponse5
-      };
-
-      aa.push(healthScoreResponse);
-      aa.push(healthScoreResponse2);
-      aa.push(healthScoreResponse3);
-      aa.push(healthScoreResponse4);
-      aa.push(healthScoreResponse5);
-      
-      setV1([...v1, aa]);
-
-      console.log("MO", mergedObject);
-      console.log("V1", v1);
-      console.log("AA-MAP", aa);
-
-
-      aa.map((value, index) => {
-        console.log("AA-MAP", value.Material);
-        console.log("AA-MAP", value.Date);
-        console.log("AA-MAP", value.material_detail[0].mat_description_eng);
-
-      } )
-
-       sethealthResponse(healthScoreResponse);
-       sethealthResponse2(healthScoreResponse2);
-       sethealthResponse3(healthScoreResponse3);
-       sethealthResponse4(healthScoreResponse4);
-       sethealthResponse5(healthScoreResponse5);
-=======
       sethealthResponse(healthScoreResponse);
       sethealthResponse2(healthScoreResponse2);
       sethealthResponse3(healthScoreResponse3);
       sethealthResponse4(healthScoreResponse4);
       sethealthResponse5(healthScoreResponse5);
->>>>>>> 2b824bfd92f24472e191efec2e75211d55084c8d
 
       console.log("HealthResponse5: ", healthResponse5);
    // }
@@ -854,15 +617,9 @@ export const PartLookUp = (props) => {
       sethealthguage5(Number(healthResponse5["Health-score"].slice(0, 4)));
     }
 
-
   }, [healthResponse, healthResponse2, healthResponse3, healthResponse4, healthResponse5 ]);
 
-  // useEffect(() => {
-  //   if (healthResponse2["Health-score"]) {
-  //     console.log("HealthScore", healthResponse2["Health-score"].slice(0, 4));
-  //     setHealthGuage(Number(healthResponse2["Health-score"].slice(0, 4)));
-  //   }
-  // }, [healthResponse2]);
+
 
   const returnColor = (status) => {
     const yellow = {
@@ -902,6 +659,12 @@ export const PartLookUp = (props) => {
   function valuetext(value) {
     return `${Date(value)}`;
   }
+
+
+
+
+
+
 
   return (
     <>
@@ -965,23 +728,64 @@ export const PartLookUp = (props) => {
               
             } */}
             <Table stickyHeader={true}>
+
+
+
+
+
               <TableHead>
                 <TableRow>
-                  <StyledTableCell style={{ width: "10%" }}>Material ID</StyledTableCell>
-                  <StyledTableCell>Date</StyledTableCell>
+                  {/* <StyledTableCell style={{ width: "10%" }}>Material ID</StyledTableCell> */}
+
+                  <StyledTableCell sortDirection="desc"  style={{ textAlign: "left" }}>
+                    <Tooltip
+                        enterDelay={300}
+                        title="Sort"
+                      >
+                      <TableSortLabel
+                        active
+                        direction="desc"
+                      >
+                      Material ID
+                      </TableSortLabel>
+                    </Tooltip>
+                  </StyledTableCell>
+
+
+                  {/* <StyledTableCell>Date</StyledTableCell> */}
+
+                  <StyledTableCell sortDirection="desc"  style={{ textAlign: "left" }}>
+                    <Tooltip
+                        enterDelay={300}
+                        title="Sort"
+                      >
+                      <TableSortLabel
+                        active
+                        direction="desc"
+                      >
+                      Date
+                      </TableSortLabel>
+                    </Tooltip>
+                  </StyledTableCell>
+
+
+
+
                   {/* <TableCell sortDirection="desc">
-                <Tooltip
-                  enterDelay={300}
-                  title="Sort"
-                >
-                  <TableSortLabel
-                    active
-                    direction="desc"
-                  >
-                    Date
-                  </TableSortLabel>
-                </Tooltip>
-              </TableCell> */}
+                    <Tooltip
+                      enterDelay={300}
+                      title="Sort"
+                    >
+                      <TableSortLabel
+                        active
+                        direction="desc"
+                      >
+                        Date
+                      </TableSortLabel>
+                    </Tooltip>
+                  </TableCell> */}
+
+              
                   {/* <TableCell>Material_9</TableCell> */}
                   {/* <TableCell
                     onClick={() => {
@@ -991,13 +795,71 @@ export const PartLookUp = (props) => {
                     Material_7
                   </TableCell> */}
                   {/* <TableCell>Material Description</TableCell> */}
-                  <StyledTableCell>Material Description Eng</StyledTableCell>
 
-                  <StyledTableCell style={{ textAlign: "center" }}>Health Status</StyledTableCell>
 
-                  <StyledTableCell style={{ textAlign: "left", paddingLeft:"4%" }}>Graphs</StyledTableCell>
+
+
+                  <StyledTableCell sortDirection="desc"  style={{ textAlign: "left" }}>
+                    <Tooltip
+                        enterDelay={300}
+                        title="Sort"
+                      >
+                      <TableSortLabel
+                        active
+                        direction="desc"
+                      >
+                      Material Description Eng
+                      </TableSortLabel>
+                    </Tooltip>
+                  </StyledTableCell>
+
+
+
+                  {/* <StyledTableCell style={{ textAlign: "center" }}>Health Status</StyledTableCell> */}
+
+
+                  <StyledTableCell sortDirection="desc"  style={{ textAlign: "center" }}>
+                    <Tooltip
+                        enterDelay={300}
+                        title="Sort"
+                      >
+                      <TableSortLabel
+                        active
+                        direction="desc"
+                      >
+                      Health Status
+                      </TableSortLabel>
+                    </Tooltip>
+                  </StyledTableCell>
+
+                  {/* <StyledTableCell style={{ textAlign: "left", paddingLeft:"4%" }}>Graphs</StyledTableCell> */}
+
+
+                  <StyledTableCell sortDirection="desc"  style={{ textAlign: "left", paddingLeft:"4%" }}>
+                    <Tooltip
+                        enterDelay={300}
+                        title="Sort"
+                      >
+                      <TableSortLabel
+                        active
+                        direction="desc"
+                      >
+                      Graphs
+                      </TableSortLabel>
+                    </Tooltip>
+                  </StyledTableCell>
+
+
+
                 </TableRow>
               </TableHead>
+
+
+
+
+
+
+
 
 
               <TableBody>
@@ -1095,426 +957,8 @@ export const PartLookUp = (props) => {
 
 
 
-                <Modal
-                  open={showmodal2}
-                  onClose={() => {
-                    SetShowmodal2(false);
-                  }}
-                >
-                  <Box sx={style}>
-                    <h2>Summary of Material availability for next 10 days</h2>
-                    <Line options={options1} data={data2} plugins={[ChartDataLabels]} />
-                    <br />
-                    <h2> Detail Information of Material availability for next 10 days</h2>
-                    <Line options={options2} data={dataDetail_2} plugins={[ChartDataLabels]} />
-                  </Box>
-                </Modal>
-
-                <>
-                  {!table1Loading
-                    ? healthResponse2?.material_detail?.map((order, index) => {
-                        return (
-                          <StyledTableRow
-                            hover
-                            key={Math.random()}
-                            // onClick={()=>{setSelectedMaterial(healthScore.slice(index,index+1))}}
-                          >
-                            <StyledTableCell style={{ width: "10%" }}>{order.material}</StyledTableCell>
-                            <StyledTableCell>
-                              {/* {healthResponse.Date} */}
-                              {/* <input
-                                type="date"
-                                value={startDate}
-                                 onChange={(e) => setStartDate(e.target.value)}
-                              /> */}
-                              {date}
-                            </StyledTableCell>
-                            {/* <TableCell>{order.material_9}</TableCell>
-                            <TableCell>{order.material_7}</TableCell> */}
-
-                            {/* <TableCell>
-                            <span style={ returnColor(Number(order.healthstatus)) } onClick={()=>{ props.setHealthGuage(order.healthstatus) }} >{order.healthstatus}</span> 
-                            </TableCell> */}
-
-                            <StyledTableCell>{order.mat_description_eng}</StyledTableCell>
-
-                            {/* <TableCell>{order.mat_description_eng}</TableCell> */}
-
-                            <StyledTableCell style={{ textAlign: "center" }}>
-                            <span style={returnColor(healthguage2)}> {healthguage2} %</span>
-                            </StyledTableCell>
-
-                            <StyledTableCell>
-                              <Box
-                                sx={
-                                  {
-                                    // display: 'flex',
-                                    // marginTop:"-7%",
-                                    // paddingBottom:"2%",
-                                    // justifyContent: 'center',
-                                    // p: 3
-                                  }
-                                }
-                              >
-                                <Button
-                                  onClick={() => {
-                                    SetShowmodal2(true);
-                                  }}
-                                >
-                                  Show Analysis
-                                </Button>
-                              </Box>
-                            </StyledTableCell>
-                          </StyledTableRow>
-                        );
-                      })
-                    : Array.from({ length: 2 }, (_, i) => (
-                        <tr key={i}>
-                          <td colSpan="8">
-                            <Shimmer>
-                              <div style={{ width: "100%" }}>&nbsp;</div>
-                            </Shimmer>
-                          </td>
-                        </tr>
-                      ))}
-                </>
-
-
-
-
-
-
-
-                {/* ---------------------------------------------------------------------------------------------------- */}
-             
-             
-                <Modal
-                  open={showmodal3}
-                  onClose={() => {
-                    SetShowmodal3(false);
-                  }}
-                >
-                  <Box sx={style}>
-                    <h2>Summary of Material availability for next 10 days</h2>
-                    <Line options={options1} data={data3} plugins={[ChartDataLabels]} />
-                    <br />
-                    <h2> Detail Information of Material availability for next 10 days</h2>
-                    <Line options={options2} data={dataDetail_3} plugins={[ChartDataLabels]} />
-                  </Box>
-                </Modal>
-
-                <>
-                  {!table1Loading
-                    ? healthResponse3?.material_detail?.map((order, index) => {
-                        return (
-                          <StyledTableRow
-                            hover
-                            key={Math.random()}
-                            // onClick={()=>{setSelectedMaterial(healthScore.slice(index,index+1))}}
-                          >
-                            <StyledTableCell style={{ width: "10%" }}>{order.material}</StyledTableCell>
-                            <StyledTableCell>
-                              {/* {healthResponse.Date} */}
-                              {/* <input
-                                type="date"
-                                value={startDate}
-                                 onChange={(e) => setStartDate(e.target.value)}
-                              /> */}
-                              {date}
-                            </StyledTableCell>
-                            {/* <TableCell>{order.material_9}</TableCell>
-                            <TableCell>{order.material_7}</TableCell> */}
-
-                            {/* <TableCell>
-                            <span style={ returnColor(Number(order.healthstatus)) } onClick={()=>{ props.setHealthGuage(order.healthstatus) }} >{order.healthstatus}</span> 
-                            </TableCell> */}
-
-                            <StyledTableCell>{order.mat_description_eng}</StyledTableCell>
-
-                            {/* <TableCell>{order.mat_description_eng}</TableCell> */}
-
-                            <StyledTableCell style={{ textAlign: "center" }}>
-                             <span style={returnColor(healthguage3)}> {healthguage3} %</span>
-                            </StyledTableCell>
-
-                            <StyledTableCell>
-                              <Box
-                                sx={
-                                  {
-                                    // display: 'flex',
-                                    // marginTop:"-7%",
-                                    // paddingBottom:"2%",
-                                    // justifyContent: 'center',
-                                    // p: 3
-                                  }
-                                }
-                              >
-                                <Button
-                                  onClick={() => {
-                                    SetShowmodal3(true);
-                                  }}
-                                >
-                                  Show Analysis
-                                </Button>
-                              </Box>
-                            </StyledTableCell>
-                          </StyledTableRow>
-                        );
-                      })
-                    : Array.from({ length: 2 }, (_, i) => (
-                        <tr key={i}>
-                          <td colSpan="8">
-                            <Shimmer>
-                              <div style={{ width: "100%" }}>&nbsp;</div>
-                            </Shimmer>
-                          </td>
-                        </tr>
-                      ))}
-                </>
-
-
-
-
-
-
-
-                {/* ---------------------------------------------------------------------------------------------------- */}
-             
-             
-                <Modal
-                  open={showmodal4}
-                  onClose={() => {
-                    SetShowmodal4(false);
-                  }}
-                >
-                  <Box sx={style}>
-                    <h2>Summary of Material availability for next 10 days</h2>
-                    <Line options={options1} data={data4} plugins={[ChartDataLabels]} />
-                    <br />
-                    <h2> Detail Information of Material availability for next 10 days</h2>
-                    <Line options={options2} data={dataDetail_4} plugins={[ChartDataLabels]} />
-                  </Box>
-                </Modal>
-
-                <>
-                  {!table1Loading
-                    ? healthResponse4?.material_detail?.map((order, index) => {
-                        return (
-                          <StyledTableRow
-                            hover
-                            key={Math.random()}
-                            // onClick={()=>{setSelectedMaterial(healthScore.slice(index,index+1))}}
-                          >
-                            <StyledTableCell style={{ width: "10%" }}>{order.material}</StyledTableCell>
-                            <StyledTableCell>
-                              {/* {healthResponse.Date} */}
-                              {/* <input
-                                type="date"
-                                value={startDate}
-                                 onChange={(e) => setStartDate(e.target.value)}
-                              /> */}
-                              {date}
-                            </StyledTableCell>
-                            {/* <TableCell>{order.material_9}</TableCell>
-                            <TableCell>{order.material_7}</TableCell> */}
-
-                            {/* <TableCell>
-                            <span style={ returnColor(Number(order.healthstatus)) } onClick={()=>{ props.setHealthGuage(order.healthstatus) }} >{order.healthstatus}</span> 
-                            </TableCell> */}
-
-                            <StyledTableCell>{order.mat_description_eng}</StyledTableCell>
-
-                            {/* <TableCell>{order.mat_description_eng}</TableCell> */}
-
-                            <StyledTableCell style={{ textAlign: "center" }}>
-                            <span style={returnColor(healthguage4)}> {healthguage4} %</span>
-                            </StyledTableCell>
-
-                            <StyledTableCell>
-                              <Box
-                                sx={
-                                  {
-                                    // display: 'flex',
-                                    // marginTop:"-7%",
-                                    // paddingBottom:"2%",
-                                    // justifyContent: 'center',
-                                    // p: 3
-                                  }
-                                }
-                              >
-                                <Button
-                                  onClick={() => {
-                                    SetShowmodal4(true);
-                                  }}
-                                >
-                                  Show Analysis
-                                </Button>
-                              </Box>
-                            </StyledTableCell>
-                          </StyledTableRow>
-                        );
-                      })
-                    : Array.from({ length: 2 }, (_, i) => (
-                        <tr key={i}>
-                          <td colSpan="8">
-                            <Shimmer>
-                              <div style={{ width: "100%" }}>&nbsp;</div>
-                            </Shimmer>                               
-                          </td>
-                        </tr>
-                      ))}
-                </>
-
-
-
-
-
-
-
-                {/* ---------------------------------------------------------------------------------------------------- */}
-             
-             
-             
-                <Modal
-                  open={showmodal5}
-                  onClose={() => {
-                    SetShowmodal5(false);
-                  }}
-                >
-                  <Box sx={style}>
-                    <h2>Summary of Material availability for next 10 days</h2>
-                    <Line options={options1} data={data5} plugins={[ChartDataLabels]} />
-                    <br />
-                    <h2> Detail Information of Material availability for next 10 days</h2>
-                    <Line options={options2} data={dataDetail_5} plugins={[ChartDataLabels]} />
-                  </Box>
-                </Modal>
-
-                <>
-                  {!table1Loading
-                    ? healthResponse5?.material_detail?.map((order, index) => {
-                        return (
-                          <StyledTableRow
-                            hover
-                            key={Math.random()}
-                            // onClick={()=>{setSelectedMaterial(healthScore.slice(index,index+1))}}
-                          >
-                            <StyledTableCell style={{ width: "10%" }}>{order.material}</StyledTableCell>
-                            <StyledTableCell>
-                              {/* {healthResponse.Date} */}
-                              {/* <input
-                                type="date"
-                                value={startDate}
-                                 onChange={(e) => setStartDate(e.target.value)}
-                              /> */}
-                              {date}
-                            </StyledTableCell>
-                            {/* <TableCell>{order.material_9}</TableCell>
-                            <TableCell>{order.material_7}</TableCell> */}
-
-                            {/* <TableCell>
-                            <span style={ returnColor(Number(order.healthstatus)) } onClick={()=>{ props.setHealthGuage(order.healthstatus) }} >{order.healthstatus}</span> 
-                            </TableCell> */}
-
-                            <StyledTableCell>{order.mat_description_eng}</StyledTableCell>
-
-                            {/* <TableCell>{order.mat_description_eng}</TableCell> */}
-
-                            <StyledTableCell style={{ textAlign: "center" }}>
-                            <span style={returnColor(healthguage5)}> {healthguage5
-                            } %</span>
-                            </StyledTableCell>
-
-                            <StyledTableCell>
-                              <Box
-                                sx={
-                                  {
-                                    // display: 'flex',
-                                    // marginTop:"-7%",
-                                    // paddingBottom:"2%",
-                                    // justifyContent: 'center',
-                                    // p: 3
-                                  }
-                                }
-                              >
-                                <Button
-                                  onClick={() => {
-                                    SetShowmodal5(true);
-                                  }}
-                                >
-                                  Show Analysis
-                                </Button>
-                              </Box>
-                            </StyledTableCell>
-                          </StyledTableRow>
-                        );
-                      })
-                    : Array.from({ length: 2 }, (_, i) => (
-                        <tr key={i}>
-                          <td colSpan="8">
-                            <Shimmer>
-                              <div style={{ width: "100%" }}>&nbsp;</div>
-                            </Shimmer>
-                          </td>
-                        </tr>
-                      ))}
-                </>
-
-
-
-
-
-
-
-                {/* ---------------------------------------------------------------------------------------------------- */}
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
              
               </TableBody>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1524,6 +968,83 @@ export const PartLookUp = (props) => {
             </Table>
           </Box>
         </PerfectScrollbar>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
         {/* <Box
       sx={{
         display: 'flex',
@@ -1586,10 +1107,7 @@ export const PartLookUp = (props) => {
 
                         <StyledTableCell>{order.mat_description_eng}</StyledTableCell>
 
-                        <StyledTableCell style={{ textAlign: "center" }}>
-                        <span style={returnColor(order.safety_stock)}> {order.safety_stock}</span>
-                          {/* {order.safety_stock} */}
-                        </StyledTableCell>
+                        <StyledTableCell style={{ textAlign: "center" }}>{order.safety_stock}</StyledTableCell>
 
                         <StyledTableCell>{order.plant}</StyledTableCell>
 
@@ -1680,7 +1198,6 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     fontSize: 14,
   },
 }));
-
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   '&:nth-of-type(odd)': {

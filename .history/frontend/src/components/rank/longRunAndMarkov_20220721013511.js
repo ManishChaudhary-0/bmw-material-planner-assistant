@@ -423,16 +423,16 @@ export const LongRunAndMarkov = (props) => {
       {loading2 ? 
       
       <Box
-        sx={{
-          height: 350,
-          position: "relative",
-        }}
-      >
-        <LinearProgress /> 
+      sx={{
+        height: 350,
+        position: "relative",
+      }}
+    >
+      <LinearProgress /> 
       
       </Box>
+      :
 
-        :
 
         <CardContent>
           <Box
@@ -558,47 +558,28 @@ export const LongRunAndMarkov = (props) => {
           font="h6"
         />
         <Divider />
-
-
-        {loading2 ? 
-      
+        <CardContent>
           <Box
             sx={{
               height: 350,
               position: "relative",
             }}
           >
-            <LinearProgress /> 
-          
+            <Bar
+              style={{ backgroundColor: "#BDCFFF" , borderRadius:10 }}
+              data={dataMarkov}
+              options={optionsMarkov}
+              //plugins={[ChartDataLabels]}
+            />
           </Box>
 
-          :
+
+          <Typography paddingTop="5%" variant="subtitle1" style={{fontSize:20}}>
+            {markovString}
+          </Typography>
 
 
-          <CardContent>
-            <Box
-              sx={{
-                height: 350,
-                position: "relative",
-              }}
-            >
-              <Bar
-                style={{ backgroundColor: "#BDCFFF" , borderRadius:10 }}
-                data={dataMarkov}
-                options={optionsMarkov}
-                //plugins={[ChartDataLabels]}
-              />
-            </Box>
-
-
-            <Typography paddingTop="5%" variant="subtitle1" style={{fontSize:20}}>
-              {markovString}
-            </Typography>
-
-
-          </CardContent>
-
-        }
+        </CardContent>
         <Divider />
         {/* <Box
           sx={{

@@ -35,7 +35,7 @@ export const ExceptionManager = (props) => {
 
   useEffect(async () => {
     if (resultBool === false) {
-      let data = await ExceptionManagerCall("365");
+      let data = await ExceptionManagerCall("90");
       // data = data.data;
       console.log("data", data);
       for (let i = 0; i < data.result.length; i++) {

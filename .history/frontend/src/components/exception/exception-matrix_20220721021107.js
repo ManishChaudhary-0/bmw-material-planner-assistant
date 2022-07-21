@@ -357,7 +357,7 @@ export const ExceptionMatrix = (props) => {
     //   }
     // });
 
-    const data = await ExceptionMatrixCall("365");
+    const data = await ExceptionMatrixCall("60");
     // data = data.data
 
     if (data.status === 403) {

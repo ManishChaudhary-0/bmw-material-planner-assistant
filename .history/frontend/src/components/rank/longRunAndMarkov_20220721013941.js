@@ -63,7 +63,7 @@ export const LongRunAndMarkov = (props) => {
   const [three, setThree] = useState();
   const [longRunString, setLongRunString] = useState("");
   const [markovString, setMarkovString] = useState("");
-  const [loading2, setLoading2] = useState(false);
+  const [loading2, setLoading2] = useState(true);
   const classStyle = useStyles();
   const [plannerMaterials, setPlannerMaterials] = useState([]);
 

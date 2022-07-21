@@ -105,7 +105,6 @@ export const Analysis = (props) => {
         console.log("!!!");
         let data = await engineAnalysisCall();
         TotalMatrixData(data);
-        console.log("DATA", data);
         setLoading(false);
 
 
@@ -233,52 +232,37 @@ export const Analysis = (props) => {
                         // key={order.MaterialID}
                         key={order.requests["planner"]}
                         >
-                            <StyledTableCell>
-                                {order.requests[0]["planner"]}
-                            </StyledTableCell>
+                        <StyledTableCell>
+                            {/* {order.MaterialID} */}
+                            {order[1].material}
+                        </StyledTableCell>
 
-                            <StyledTableCell>
-                                {order.requests[0]["material"]}
-                            </StyledTableCell>
-                            <StyledTableCell>
-                                {order.requests[0]["advice"]}
-                            </StyledTableCell>
+                        <StyledTableCell>
+                            {/* {order.MaterialID} */}
+                            {order[1].material_7}
+                        </StyledTableCell>
+                        <StyledTableCell>
+                            {/* {order.MaterialID} */}
+                            {order[1].material_9}
+                        </StyledTableCell>
 
-                            <StyledTableCell style={{ textAlign: "center" }}>
-                                {order.requests[0]["planner"]}
-                            </StyledTableCell>
+                        <StyledTableCell style={{ textAlign: "center" }}>
+                            {/* {order.ExceptionCount} */}
+                            {order[0].count}
+                        </StyledTableCell>
+                        <StyledTableCell style={{ textAlign: "center" }}>
+                            {/* {(order.Percentage*100).toString().slice(0,4) + "%"} */}
+                            {order[0].percentage.toString().slice(0, 4) + " %"}
+                        </StyledTableCell>
+                        <StyledTableCell>
+                            {/* {order.PartDescription} */}
+                            {order[1].mat_description}
+                        </StyledTableCell>
 
-                            <StyledTableCell >
-                                {order.requests[0]["accepted"]}
-                            </StyledTableCell>                           
-                            
-                            <StyledTableCell >
-                                {order.requests[0]["reason"]}
-                            </StyledTableCell>
-
-                            <StyledTableCell >
-                                {order.requests[0]["elapsed"]}
-                            </StyledTableCell>
-
-                            <StyledTableCell >
-                                {order.requests[0]["started"]}
-                            </StyledTableCell>
-
-
-                            <StyledTableCell >
-                                {order.requests[0]["finished"]}
-                            </StyledTableCell>
-
-
-                            <StyledTableCell >
-                                {order.requests[0]["transaction"]}
-                            </StyledTableCell>
-
-
-                            <StyledTableCell >
-                                {order.requests[0]["problem"]}
-                            </StyledTableCell>
-
+                        <StyledTableCell>
+                            {/* {order.PartDescriptionEng} */}
+                            {order[1].mat_description_eng}
+                        </StyledTableCell>
                         </StyledTableRow>
                     ))}
                     </TableBody>
