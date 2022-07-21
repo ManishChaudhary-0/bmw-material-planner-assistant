@@ -105,7 +105,6 @@ export const Analysis = (props) => {
         console.log("!!!");
         let data = await engineAnalysisCall();
         TotalMatrixData(data);
-        console.log("DATA", data);
         setLoading(false);
 
 
@@ -187,16 +186,71 @@ export const Analysis = (props) => {
               title="Recommendation Feedback Analysis"
             />
 
-            {/* <Divider /> */}
+            <Divider />
+
+
+
+
+
 
             <CardContent display="flex">
 
             {loading ? <LinearProgress /> : 
 
-                <Divider />
+                <Typography paragraph variant="subtitle1" gutterBottom component="div">
+
+                {/* {recommendationText} */}
+
+                {/* {dddd.advice} */}
+                </Typography>
             }
 
+            {/* <Box
+                sx={{
+                height: 100,
+                position: 'relative',
+                }}
+
+                display="flex"
+                justifyContent="flex-end"
+                alignItems="flex-end"
+            >
+                <ButtonGroup disableElevation variant="contained"  sx={{ height: 60,fontSize:20, width:'20%'}}>
+
+
+                <Button sx={{width:'50%', fontSize:20, fontWeight:0}} theme={themeButton} 
+                //onClick={handleReject} 
+                //color={!reject ? "inherit" : "secondary"}
+                >Reject</Button>
+
+
+                <Button sx={{width:'50%', fontSize:20, fontWeight:0}} theme={themeButton} 
+                // onClick={handleAccept} 
+                //color={reject ? "inherit" : "primary"}
+                >Agree</Button>
+
+
+                </ButtonGroup>
+            </Box> */}
+
+
             </CardContent>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -233,52 +287,37 @@ export const Analysis = (props) => {
                         // key={order.MaterialID}
                         key={order.requests["planner"]}
                         >
-                            <StyledTableCell>
-                                {order.requests[0]["planner"]}
-                            </StyledTableCell>
+                        <StyledTableCell>
+                            {/* {order.MaterialID} */}
+                            {order[1].material}
+                        </StyledTableCell>
 
-                            <StyledTableCell>
-                                {order.requests[0]["material"]}
-                            </StyledTableCell>
-                            <StyledTableCell>
-                                {order.requests[0]["advice"]}
-                            </StyledTableCell>
+                        <StyledTableCell>
+                            {/* {order.MaterialID} */}
+                            {order[1].material_7}
+                        </StyledTableCell>
+                        <StyledTableCell>
+                            {/* {order.MaterialID} */}
+                            {order[1].material_9}
+                        </StyledTableCell>
 
-                            <StyledTableCell style={{ textAlign: "center" }}>
-                                {order.requests[0]["planner"]}
-                            </StyledTableCell>
+                        <StyledTableCell style={{ textAlign: "center" }}>
+                            {/* {order.ExceptionCount} */}
+                            {order[0].count}
+                        </StyledTableCell>
+                        <StyledTableCell style={{ textAlign: "center" }}>
+                            {/* {(order.Percentage*100).toString().slice(0,4) + "%"} */}
+                            {order[0].percentage.toString().slice(0, 4) + " %"}
+                        </StyledTableCell>
+                        <StyledTableCell>
+                            {/* {order.PartDescription} */}
+                            {order[1].mat_description}
+                        </StyledTableCell>
 
-                            <StyledTableCell >
-                                {order.requests[0]["accepted"]}
-                            </StyledTableCell>                           
-                            
-                            <StyledTableCell >
-                                {order.requests[0]["reason"]}
-                            </StyledTableCell>
-
-                            <StyledTableCell >
-                                {order.requests[0]["elapsed"]}
-                            </StyledTableCell>
-
-                            <StyledTableCell >
-                                {order.requests[0]["started"]}
-                            </StyledTableCell>
-
-
-                            <StyledTableCell >
-                                {order.requests[0]["finished"]}
-                            </StyledTableCell>
-
-
-                            <StyledTableCell >
-                                {order.requests[0]["transaction"]}
-                            </StyledTableCell>
-
-
-                            <StyledTableCell >
-                                {order.requests[0]["problem"]}
-                            </StyledTableCell>
-
+                        <StyledTableCell>
+                            {/* {order.PartDescriptionEng} */}
+                            {order[1].mat_description_eng}
+                        </StyledTableCell>
                         </StyledTableRow>
                     ))}
                     </TableBody>
