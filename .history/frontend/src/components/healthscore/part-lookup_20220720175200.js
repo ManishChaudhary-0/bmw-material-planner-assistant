@@ -15,6 +15,16 @@ import {
 import { healthScoreCall, matetrialCall } from "../../utils/apihelper";
 import { TrafficByDevice } from "../../components/healthscore/traffic-by-device";
 
+// import {
+//   Chart as ChartJS,
+//   CategoryScale,
+//   LinearScale,
+//   PointElement,
+//   LineElement,
+//   Title,
+//   Tooltip,
+//   Legend,
+// } from 'chart.js';
 
 import { Line } from "react-chartjs-2";
 
@@ -1366,10 +1376,7 @@ export const PartLookUp = (props) => {
 
                         <StyledTableCell>{order.mat_description_eng}</StyledTableCell>
 
-                        <StyledTableCell style={{ textAlign: "center" }}>
-                        <span style={returnColor(order.safety_stock)}> {order.safety_stock}</span>
-                          {/* {order.safety_stock} */}
-                        </StyledTableCell>
+                        <StyledTableCell style={{ textAlign: "center" }}>{order.safety_stock}</StyledTableCell>
 
                         <StyledTableCell>{order.plant}</StyledTableCell>
 
@@ -1460,7 +1467,6 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     fontSize: 14,
   },
 }));
-
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   '&:nth-of-type(odd)': {

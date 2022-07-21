@@ -131,15 +131,15 @@ export const LatestOrders = (props) => {
       borderRadius: "25px 25px",
     };
 
-    const lightred = {
+    const maroon = {
       color: "white",
-      backgroundColor: "#EA4C46",
+      backgroundColor: "maroon",
       padding: "5px 20px",
       borderRadius: "25px 25px",
     };
 
     if (status < 20) {
-      return lightred;
+      return maroon;
     }
 
     if (status > 20 && status < 60) {

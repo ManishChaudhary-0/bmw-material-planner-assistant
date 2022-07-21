@@ -1366,10 +1366,7 @@ export const PartLookUp = (props) => {
 
                         <StyledTableCell>{order.mat_description_eng}</StyledTableCell>
 
-                        <StyledTableCell style={{ textAlign: "center" }}>
-                        <span style={returnColor(order.safety_stock)}> {order.safety_stock}</span>
-                          {/* {order.safety_stock} */}
-                        </StyledTableCell>
+                        <StyledTableCell style={{ textAlign: "center" }}>{order.safety_stock}</StyledTableCell>
 
                         <StyledTableCell>{order.plant}</StyledTableCell>
 

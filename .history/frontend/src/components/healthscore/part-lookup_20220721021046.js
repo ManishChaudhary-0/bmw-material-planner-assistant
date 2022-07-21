@@ -659,15 +659,15 @@ export const PartLookUp = (props) => {
       borderRadius: "25px 25px",
     };
 
-    const maroon = {
+    const lightred = {
       color: "white",
-      backgroundColor: "maroon",
+      backgroundColor: "#EA4C46",
       padding: "5px 20px",
       borderRadius: "25px 25px",
     };
 
-    if (status <= 50) {
-      return maroon;
+    if (status < 20) {
+      return lightred;
     }
 
     if (status >= 50 && status < 70) {

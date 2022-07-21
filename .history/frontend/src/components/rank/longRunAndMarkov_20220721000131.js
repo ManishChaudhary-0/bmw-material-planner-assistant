@@ -14,7 +14,6 @@ import {
   Select,
   MenuItem,
   Grid,
-  Typography,
 } from "@mui/material";
 import { setDate } from "date-fns";
 import axios from "axios";
@@ -46,14 +45,24 @@ import { matetrialCall } from "src/utils/apihelper";
 export const LongRunAndMarkov = (props) => {
  // ChartJS.register(ChartDataLabels);
   const theme = useTheme();
+
   const [resultBool, setResultBool] = useState(false);
   const [alwaysTrue, setAlwaysTrue] = useState(true);
   const [materialID, setMaterialID] = useState("");
   const [materialSelected, setMaterialSelected] = useState(false);
   const [materialsLoaded, setMaterialsLoaded] = useState(false);
+
+  
+
+  // const [is114, setIs114] = useState(false);
+  // const [is177, setIs177] = useState(false);
+  // const [is594, setIs594] = useState(false);
+  // const [isM11, setIsM11] = useState(false);
+
   const [earlyPercentage, setEarlyPercentage] = useState();
   const [onTimePercentage, setOnTimePercentage] = useState();
   const [latePercentage, setLatePercentage] = useState();
+
   const [negThree, setNegThree] = useState();
   const [negTwo, setNegTwo] = useState();
   const [negOne, setNegOne] = useState();
@@ -61,10 +70,14 @@ export const LongRunAndMarkov = (props) => {
   const [one, setOne] = useState();
   const [two, setTwo] = useState();
   const [three, setThree] = useState();
-  const [longRunString, setLongRunString] = useState("");
-  const [markovString, setMarkovString] = useState("");
-  const [loading2, setLoading2] = useState(false);
+
+  const [loading2, setLoading2] = useState(true);
+
+
+
+
   const classStyle = useStyles();
+
   const [plannerMaterials, setPlannerMaterials] = useState([]);
 
   ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -87,30 +100,34 @@ export const LongRunAndMarkov = (props) => {
       setMaterialsLoaded(true);
     }
 
-    // user = localStorage.getItem("plannerId");
-    // if (resultBool == false && materialSelected == true) {
-    //   loadMaterials();
-    //   setLoading2(false);
-    // }
-
-  });
-
-
-  useEffect(async () => {
-
     user = localStorage.getItem("plannerId");
 
     if (resultBool == false && materialSelected == true) {
-      setLoading2(true);
 
       loadMaterials();
       setLoading2(false);
 
     }
+
+
+
   });
 
 
+  // useEffect(async () => {
+  //   user = localStorage.getItem("plannerId");
+
+  //   if (resultBool == false && materialSelected == true) {
+
+  //     setLoading2(true);
+  //     loadMaterials();
+  //     setLoading2(false);
+  //   }
+  // });
+
   async function loadMaterials()  {
+
+    setLoading2(true);
 
     localStorage.setItem("materialID", materialID);
 
@@ -144,15 +161,7 @@ export const LongRunAndMarkov = (props) => {
     console.log("DATA Markov 2: ", data.markov[5]["2"]);
     console.log("DATA Markov 3: ", data.markov[6]["3"]);
 
-    console.log("Long Run String ", data["long run string"]);
-    console.log("Markov String ", data["markov string"]);
-
-    setLongRunString(data["long run string"]);
-    setMarkovString(data["markov string"]);
-
   }
-
-
 
   let e = earlyPercentage * 100;
   let ot = onTimePercentage * 100;
@@ -377,7 +386,6 @@ export const LongRunAndMarkov = (props) => {
     <MenuItem value={item.toString()} >{item}</MenuItem>
   ));
 
-
   const handler = (event, value) => {
     setMaterialID(value);
     localStorage.setItem("materialID", value);
@@ -385,6 +393,10 @@ export const LongRunAndMarkov = (props) => {
     localStorage.setItem("queueMarkov", true);
     localStorage.setItem("MAT", value);
   };
+
+  // const handleChange = (event) =>
+  //   setMaterialID("741788607") && setMaterialSelected(true) && console.log("MTTT:", materialID);
+
 
 
   return (
@@ -419,52 +431,131 @@ export const LongRunAndMarkov = (props) => {
           title="Long Run"
         />
 
+{/* 
+      {is114 ? (
+        <CardHeader
+          action={
+            <FormControl style={{ width: 300 }}>
+              <InputLabel id="Select Material">Material</InputLabel>
+              <Select
+                value={materialID}
+                label="Age"
+                onChange={handler}
 
-      {loading2 ? 
+              >
+                <MenuItem value={"741788607"}>741788607</MenuItem>
+                <MenuItem value={"743093505"}>743093505</MenuItem>
+                <MenuItem value={"809198305"}>809198305</MenuItem>
+                <MenuItem value={"742065710"}>742065710</MenuItem>
+                <MenuItem value={"807165907"}>807165907</MenuItem>
+              </Select>
+            </FormControl>
+          }
+          title="Long Run"
+        />
+      ) : is177 ? (
+        <CardHeader
+          action={
+            <FormControl style={{ width: 500 }}>
+              <InputLabel id="Select Material">Material</InputLabel>
+              <Select
+                value={materialID}
+                label="Age"
+                onChange={handler}
+              >
+                <MenuItem value={"747096504"}>747096504</MenuItem>
+                <MenuItem value={"807517908"}>807517908</MenuItem>
+                <MenuItem value={"874696710"}>874696710</MenuItem>
+                <MenuItem value={"807517710"}>807517710</MenuItem>
+                <MenuItem value={"809747903"}>809747903</MenuItem>
+
+              </Select>
+            </FormControl>
+          }
+          title="Long Run"
+        />
+      ) : is594 ? (
+        <CardHeader
+          action={
+            <FormControl style={{ width: 500 }}>
+              <InputLabel id="Select Material">Material</InputLabel>
+              <Select
+
+                value={materialID}
+                label="Age"
+                onChange={handler}
+              >
+                <MenuItem value={"5A11EC102"}>5A11EC102</MenuItem>
+                <MenuItem value={"5A11EC403"}>5A11EC403</MenuItem>
+                <MenuItem value={"945127407"}>945127407</MenuItem>
+                <MenuItem value={"5A11EC303"}>5A11EC303</MenuItem>
+                <MenuItem value={"5A11ED102"}>5A11ED102</MenuItem>
+
+              </Select>
+            </FormControl>
+          }
+          title="Long Run"
+        />
+      ) : isM11 ? (
+        <CardHeader
+          action={
+            <FormControl style={{ width: 500 }}>
+              <InputLabel id="Select Material">Material</InputLabel>
+              <Select
+
+                value={materialID}
+                label="Age"
+                onChange={handler}
+              >
+                <MenuItem value={"748948105"}>748948105</MenuItem>
+                <MenuItem value={"795148603"}>795148603</MenuItem>
+                <MenuItem value={"947015904"}>947015904</MenuItem>
+                <MenuItem value={"748948206"}>748948206</MenuItem>
+                <MenuItem value={"807765206"}>807765206</MenuItem>
+              </Select>
+            </FormControl>
+          }
+          title="Long Run"
+        />
+      ) : (
+        <CardHeader
+          action={
+            <FormControl style={{ width: 500 }}>
+              <InputLabel id="Select Material">Material</InputLabel>
+              <Select
+                // labelId="Select Material"
+                // id="Select Material"
+                value={materialID}
+                label="Age"
+                onChange={handler}
+              >
+              </Select>
+            </FormControl>
+          }
+          title="Long Run"
+        />
+      )} */}
+
+
+      {loading2 ? <LinearProgress /> : <Divider />}
+
       
-      <Box
-        sx={{
-          height: 350,
-          position: "relative",
-        }}
-      >
-        <LinearProgress /> 
-      
-      </Box>
-
-        :
-
-        <CardContent>
-          <Box
-            sx={{
-              height: 350,
-              position: "relative",
-            }}
-          >
-            <Bar
-              style={{ backgroundColor: "#BDCFFF" , borderRadius:20}}
-              data={dataLongRun}
-              options={optionsLongRun}
-              //plugins={[ChartDataLabels]}
-            />
-          </Box>
-
-
-
-
-          <Typography paddingTop="5%" variant="subtitle1" style={{fontSize:20}}>
-              {longRunString}
-          </Typography>
-
-
-        </CardContent>
-      }
-
-
+      <CardContent>
+        <Box
+          sx={{
+            height: 350,
+            position: "relative",
+          }}
+        >
+          <Bar
+            style={{ backgroundColor: "#BDCFFF" , borderRadius:20}}
+            data={dataLongRun}
+            options={optionsLongRun}
+            //plugins={[ChartDataLabels]}
+          />
+        </Box>
+      </CardContent>
       <Divider />
-
-
-
       {/* <CardContent>
         <Box
           sx={{
@@ -558,47 +649,21 @@ export const LongRunAndMarkov = (props) => {
           font="h6"
         />
         <Divider />
-
-
-        {loading2 ? 
-      
+        <CardContent>
           <Box
             sx={{
               height: 350,
               position: "relative",
             }}
           >
-            <LinearProgress /> 
-          
+            <Bar
+              style={{ backgroundColor: "#BDCFFF" , borderRadius:10 }}
+              data={dataMarkov}
+              options={optionsMarkov}
+              //plugins={[ChartDataLabels]}
+            />
           </Box>
-
-          :
-
-
-          <CardContent>
-            <Box
-              sx={{
-                height: 350,
-                position: "relative",
-              }}
-            >
-              <Bar
-                style={{ backgroundColor: "#BDCFFF" , borderRadius:10 }}
-                data={dataMarkov}
-                options={optionsMarkov}
-                //plugins={[ChartDataLabels]}
-              />
-            </Box>
-
-
-            <Typography paddingTop="5%" variant="subtitle1" style={{fontSize:20}}>
-              {markovString}
-            </Typography>
-
-
-          </CardContent>
-
-        }
+        </CardContent>
         <Divider />
         {/* <Box
           sx={{
