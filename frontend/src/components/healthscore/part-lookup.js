@@ -231,7 +231,7 @@ export const PartLookUp = (props) => {
       },
     };
 
-    const labels = aa[index]?.total_qty_instances?.map((val) => {
+    const labels = aa[index]?.total_qty_analysis?.map((val) => {
       return val.demand_date;
     });
 
@@ -389,10 +389,10 @@ export const PartLookUp = (props) => {
       } )
 
        sethealthResponse(healthScoreResponse);
-      // sethealthResponse2(healthScoreResponse2);
-      // sethealthResponse3(healthScoreResponse3);
-      // sethealthResponse4(healthScoreResponse4);
-      // sethealthResponse5(healthScoreResponse5);
+       sethealthResponse2(healthScoreResponse2);
+       sethealthResponse3(healthScoreResponse3);
+       sethealthResponse4(healthScoreResponse4);
+       sethealthResponse5(healthScoreResponse5);
 
       console.log("HealthResponse5: ", healthResponse5);
    // }
