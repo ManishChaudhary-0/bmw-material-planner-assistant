@@ -63,9 +63,11 @@ export const LongRunAndMarkov = (props) => {
   const [three, setThree] = useState();
   const [longRunString, setLongRunString] = useState("");
   const [markovString, setMarkovString] = useState("");
-  const [loading2, setLoading2] = useState(false);
+  const [loading2, setLoading2] = useState(true);
   const classStyle = useStyles();
   const [plannerMaterials, setPlannerMaterials] = useState([]);
+  const [newmaterials, setNewMaterials] = useState([]);
+  
 
   ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -85,6 +87,7 @@ export const LongRunAndMarkov = (props) => {
       }
       setPlannerMaterials(materials);
       setMaterialsLoaded(true);
+      setLoading2(false);
     }
 
     // user = localStorage.getItem("plannerId");
@@ -101,10 +104,9 @@ export const LongRunAndMarkov = (props) => {
     user = localStorage.getItem("plannerId");
 
     if (resultBool == false && materialSelected == true) {
-      setLoading2(true);
-
+      
       loadMaterials();
-      setLoading2(false);
+
 
     }
   });
@@ -112,11 +114,12 @@ export const LongRunAndMarkov = (props) => {
 
   async function loadMaterials()  {
 
+
+
     localStorage.setItem("materialID", materialID);
 
 
     let data = await rankCall();
-
 
     console.log("DATA LONG-RUN: ", data);
     console.log("DATA LONG-RUN1: ", data["long run"][0].early);
@@ -149,6 +152,8 @@ export const LongRunAndMarkov = (props) => {
 
     setLongRunString(data["long run string"]);
     setMarkovString(data["markov string"]);
+
+    
 
   }
 
@@ -236,7 +241,7 @@ export const LongRunAndMarkov = (props) => {
         max:100,
         min:0,
         ticks: { color: "black", beginAtZero: true },
-        title: { display: true, text: "Percantages", color: "black" },
+        title: { display: true, text: "Percentages", color: "black" },
       },
       xAxes: [
         {
@@ -357,7 +362,7 @@ export const LongRunAndMarkov = (props) => {
         max:100,
         min:0,
         ticks: { color: "black", beginAtZero: true},
-        title: { display: true, text: "Percantages", color: "black" },
+        title: { display: true, text: "Percentages", color: "black" },
       },
       xAxes: [
         {
@@ -452,7 +457,7 @@ export const LongRunAndMarkov = (props) => {
 
 
 
-          <Typography paddingTop="5%" variant="subtitle1" style={{fontSize:20}}>
+          <Typography paddingTop="5%" variant="subtitle1" style={{fontSize:18}}>
               {longRunString}
           </Typography>
 
@@ -591,7 +596,7 @@ export const LongRunAndMarkov = (props) => {
             </Box>
 
 
-            <Typography paddingTop="5%" variant="subtitle1" style={{fontSize:20}}>
+            <Typography paddingTop="5%" variant="subtitle1" style={{fontSize:18}}>
               {markovString}
             </Typography>
 

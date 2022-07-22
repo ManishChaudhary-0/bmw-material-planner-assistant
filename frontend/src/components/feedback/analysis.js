@@ -103,10 +103,10 @@ export const Analysis = (props) => {
         localStorage.setItem("End-Date", formatYmd(endDate));
         console.log("!!!");
         let data = await engineAnalysisCall();
-        setTotalMatrixData(data);
+        setTotalMatrixData(data.requests);
         console.log("DATA", data);
         setLoading(false);
-
+        setDateLoaded(false);
 
         
     }
@@ -136,7 +136,7 @@ export const Analysis = (props) => {
 
                         <DesktopDatePicker
                             label="Start Date"
-                            value={startDate}
+                            value={new Date('2022-06-01')}
                             onChange={(newValue) => {
                                 setStartDate(newValue);
                             }}
@@ -235,52 +235,48 @@ export const Analysis = (props) => {
                         <StyledTableRow
                         hover
                         // key={order.MaterialID}
-                        key={order.requests["planner"]}
+                        key={order.planner}
                         >
                             <StyledTableCell>
-                                {order.requests[0]["planner"]}
+                                {order.planner}
                             </StyledTableCell>
 
                             <StyledTableCell>
-                                {order.requests[0]["material"]}
+                                {order.material}
                             </StyledTableCell>
                             <StyledTableCell>
-                                {order.requests[0]["advice"]}
-                            </StyledTableCell>
-
-                            <StyledTableCell style={{ textAlign: "center" }}>
-                                {order.requests[0]["planner"]}
+                                {order.advice}
                             </StyledTableCell>
 
                             <StyledTableCell >
-                                {order.requests[0]["accepted"]}
+                                {order.accepted}
                             </StyledTableCell>                           
                             
                             <StyledTableCell >
-                                {order.requests[0]["reason"]}
+                                {order.reason}
                             </StyledTableCell>
 
                             <StyledTableCell >
-                                {order.requests[0]["elapsed"]}
+                                {order.elapsed}
                             </StyledTableCell>
 
                             <StyledTableCell >
-                                {order.requests[0]["started"]}
-                            </StyledTableCell>
-
-
-                            <StyledTableCell >
-                                {order.requests[0]["finished"]}
+                                {order.started}
                             </StyledTableCell>
 
 
                             <StyledTableCell >
-                                {order.requests[0]["transaction"]}
+                                {order.finished}
                             </StyledTableCell>
 
 
                             <StyledTableCell >
-                                {order.requests[0]["problem"]}
+                                {order.transaction}
+                            </StyledTableCell>
+
+
+                            <StyledTableCell >
+                                {order.problem}
                             </StyledTableCell>
 
                         </StyledTableRow>
@@ -329,7 +325,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
       color: theme.palette.common.black,
     },
     [`&.${tableCellClasses.body}`]: {
-      fontSize: 14,
+      fontSize: 12,
     },
   }));
   

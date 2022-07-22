@@ -178,8 +178,11 @@ async def exception_matrix(planner_id:str,  days:int):
         list_manager = df_list_manager["material_9"].values.tolist()
         
         # Data Reading from MySQL 
-        sql = """SELECT matnr, cdate, auskt FROM admin.Exception WHERE (cdate BETWEEN %s AND %s)"""
-        df_exception = pd.DataFrame(conn.execute(sql, start_date, end_date).fetchall()) 
+        #sql = """SELECT matnr, cdate, auskt FROM admin.Exception WHERE (cdate BETWEEN %s AND %s)"""
+        #df_exception = pd.DataFrame(conn.execute(sql, start_date, end_date).fetchall()) 
+
+        sql = """SELECT matnr, cdate, auskt FROM admin.Exception"""
+        df_exception = pd.DataFrame(conn.execute(sql).fetchall()) 
         
         if df_exception.empty:
             response = {

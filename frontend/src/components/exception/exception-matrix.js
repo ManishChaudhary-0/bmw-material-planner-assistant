@@ -116,40 +116,7 @@ export const LatestOrders = (props) => {
     props.setHealthGuage(healthScore[0].healthstatus);
   }, []);
 
-  const returnColor = (status) => {
-    const yellow = {
-      color: "black",
-      backgroundColor: "yellow",
-      padding: "5px 20px",
-      borderRadius: "25px 25px",
-    };
 
-    const green = {
-      color: "white",
-      backgroundColor: "green",
-      padding: "5px 20px",
-      borderRadius: "25px 25px",
-    };
-
-    const lightred = {
-      color: "white",
-      backgroundColor: "#EA4C46",
-      padding: "5px 20px",
-      borderRadius: "25px 25px",
-    };
-
-    if (status < 20) {
-      return lightred;
-    }
-
-    if (status > 20 && status < 60) {
-      return yellow;
-    }
-
-    if (status > 60) {
-      return green;
-    }
-  };
 
   function valuetext(value) {
     return `${Date(value)}`;
@@ -342,6 +309,41 @@ export const ExceptionMatrix = (props) => {
   const [TotalMatrixData, setTotalMatrixData] = useState([]);
   const [DataLabels, setDataLabels] = useState([]);
 
+  const returnColor = (status) => {
+    const yellow = {
+      color: "black",
+      backgroundColor: "yellow",
+      padding: "5px 20px",
+      borderRadius: "25px 25px",
+    };
+
+    const green = {
+      color: "white",
+      backgroundColor: "green",
+      padding: "5px 20px",
+      borderRadius: "25px 25px",
+    };
+
+    const lightred = {
+      color: "white",
+      backgroundColor: "#EA4C46",
+      padding: "5px 20px",
+      borderRadius: "25px 25px",
+    };
+
+    if (status < 10) {
+      return green;
+    }
+
+    if (status > 10 && status < 40) {
+      return yellow;
+    }
+
+    if (status > 40) {
+      return lightred;
+    }
+  };
+
   async function getMatrixDataAPI() {
     // use axios instead of fetch
 
@@ -439,8 +441,8 @@ export const ExceptionMatrix = (props) => {
 
                   <StyledTableCell style={{ textAlign: "center" }}>
                     {/* {order.ExceptionCount} */}
-                    {/* {order[0].count} */}
-                    <span style={returnColor(order[0].count)}> {order[0].count}</span>
+                    {order[0].count}
+                    {/* <span style={returnColor(order[0].count)}> {order[0].count}</span> */}
 
                   </StyledTableCell>
                   <StyledTableCell style={{ textAlign: "center" }}>
@@ -492,7 +494,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     color: theme.palette.common.black,
   },
   [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
+    fontSize: 12,
   },
 }));
 

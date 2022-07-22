@@ -268,12 +268,12 @@ async def part_probabilities(planner_id: str, material_id: str):
                     {'1':markov_probabilities[4]},
                     {'2':markov_probabilities[5]},
                     {'3':markov_probabilities[6]}],
-	    'markov string': 'There is a {}% chance of being early, {}% chance of being on-time, and {}% chance of being late'.format(markov_early*100,markov_ontime*100,markov_late*100),
+	    'markov string': 'There is a {}% chance of being early, {}% chance of being on-time, and {}% chance of being late'.format(round(markov_early*100,2),round(markov_ontime*100,2),round(markov_late*100,2)),
 
             'long run':[{'early':long_run_probabilities[0]},
                         {'on time':long_run_probabilities[1]},
                         {'late':long_run_probabilities[2]}],
-	    'long run string': 'There is a {}% chance of being early, {}% chance of being on-time, and {}% chance of being late'.format(long_run_probabilities[0]*100,long_run_probabilities[1]*100,long_run_probabilities[2]*100)
+	    'long run string': 'There is a {}% chance of being early, {}% chance of being on-time, and {}% chance of being late'.format(round(long_run_probabilities[0]*100,2),round(long_run_probabilities[1]*100,2),round(long_run_probabilities[2]*100,2))
         }
         
         # my_profiler.end("part probabilities")
