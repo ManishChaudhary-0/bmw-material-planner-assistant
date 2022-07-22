@@ -310,37 +310,37 @@ export const ExceptionMatrix = (props) => {
   const [DataLabels, setDataLabels] = useState([]);
 
   const returnColor = (status) => {
-    const yellow = {
+    const lightblue = {
       color: "black",
-      backgroundColor: "yellow",
+      backgroundColor: "#72d7ff",
       padding: "5px 20px",
       borderRadius: "25px 25px",
     };
 
-    const green = {
-      color: "white",
-      backgroundColor: "green",
+    const white = {
+      color: "black",
+      backgroundColor: "#e4ede9",
       padding: "5px 20px",
       borderRadius: "25px 25px",
     };
 
-    const lightred = {
+    const blue = {
       color: "white",
-      backgroundColor: "#EA4C46",
+      backgroundColor: "#5697ff",
       padding: "5px 20px",
       borderRadius: "25px 25px",
     };
 
     if (status < 10) {
-      return green;
+      return white;
     }
 
     if (status > 10 && status < 40) {
-      return yellow;
+      return lightblue;
     }
 
     if (status > 40) {
-      return lightred;
+      return blue;
     }
   };
 

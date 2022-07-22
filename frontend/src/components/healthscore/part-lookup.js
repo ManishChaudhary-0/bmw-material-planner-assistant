@@ -103,7 +103,7 @@ export const PartLookUp = (props) => {
       legend: {
         // position: 'top' as const,
       },
-      datalabels: {
+      /*datalabels: {
         offset: 0,
         display:"auto",
         anchor: "center",
@@ -112,7 +112,7 @@ export const PartLookUp = (props) => {
           size: "15",
           weight: "bold",
         },
-      },
+      },*/
 
       title: {
         display: true,
@@ -127,7 +127,7 @@ export const PartLookUp = (props) => {
       legend: {
         // position: 'top' as const,
       },
-      datalabels: {
+      /*datalabels: {
         offset: 5,
         display:"auto",
         anchor: "center",
@@ -137,7 +137,7 @@ export const PartLookUp = (props) => {
           size: "15",
           weight: "bold",
         },
-      },
+      },*/
       title: {
         display: true,
         text: "Health Score Analysis of Material",
@@ -799,10 +799,10 @@ export const PartLookUp = (props) => {
                 >
                   <Box sx={style}>
                     <h2>Summary of Material availability for next 10 days</h2>
-                    <Line options={options1} data={data1} plugins={[ChartDataLabels]} />
+                    <Line options={options1} data={data1} />
                     <br />
                     <h2> Detail Information of Material availability for next 10 days</h2>
-                    <Line options={options2} data={dataDetail_1} plugins={[ChartDataLabels]} />
+                    <Line options={options2} data={dataDetail_1} />
                   </Box>
                 </Modal>
 
@@ -893,10 +893,10 @@ export const PartLookUp = (props) => {
                 >
                   <Box sx={style}>
                     <h2>Summary of Material availability for next 10 days</h2>
-                    <Line options={options1} data={data2} plugins={[ChartDataLabels]} />
+                    <Line options={options1} data={data2} />
                     <br />
                     <h2> Detail Information of Material availability for next 10 days</h2>
-                    <Line options={options2} data={dataDetail_2} plugins={[ChartDataLabels]} />
+                    <Line options={options2} data={dataDetail_2} />
                   </Box>
                 </Modal>
 
@@ -986,10 +986,10 @@ export const PartLookUp = (props) => {
                 >
                   <Box sx={style}>
                     <h2>Summary of Material availability for next 10 days</h2>
-                    <Line options={options1} data={data3} plugins={[ChartDataLabels]} />
+                    <Line options={options1} data={data3}  />
                     <br />
                     <h2> Detail Information of Material availability for next 10 days</h2>
-                    <Line options={options2} data={dataDetail_3} plugins={[ChartDataLabels]} />
+                    <Line options={options2} data={dataDetail_3}  />
                   </Box>
                 </Modal>
 
@@ -1079,10 +1079,10 @@ export const PartLookUp = (props) => {
                 >
                   <Box sx={style}>
                     <h2>Summary of Material availability for next 10 days</h2>
-                    <Line options={options1} data={data4} plugins={[ChartDataLabels]} />
+                    <Line options={options1} data={data4}  />
                     <br />
                     <h2> Detail Information of Material availability for next 10 days</h2>
-                    <Line options={options2} data={dataDetail_4} plugins={[ChartDataLabels]} />
+                    <Line options={options2} data={dataDetail_4}  />
                   </Box>
                 </Modal>
 
@@ -1173,10 +1173,10 @@ export const PartLookUp = (props) => {
                 >
                   <Box sx={style}>
                     <h2>Summary of Material availability for next 10 days</h2>
-                    <Line options={options1} data={data5} plugins={[ChartDataLabels]} />
+                    <Line options={options1} data={data5}  />
                     <br />
                     <h2> Detail Information of Material availability for next 10 days</h2>
-                    <Line options={options2} data={dataDetail_5} plugins={[ChartDataLabels]} />
+                    <Line options={options2} data={dataDetail_5}  />
                   </Box>
                 </Modal>
 

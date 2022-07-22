@@ -106,7 +106,7 @@ export const LongRunAndMarkov = (props) => {
     if (resultBool == false && materialSelected == true) {
       
       loadMaterials();
-
+      setMaterialSelected(false);
 
     }
   });
