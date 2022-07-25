@@ -211,7 +211,7 @@ const rankCall = () => {
 
 const recommendationCall = () => {
   var material2 = localStorage.getItem("materialID-Recommendation");
-  const url = `http://10.81.41.200:8000/mpa/assist?material=${material2}`;
+  const url = `http://10.81.41.200:8000/mpa/assist?material=${material2}&planner=${eval(plannerId)}&date=2022-03-10`;
   return new Promise((resolve, reject) => {
     const header = getRecommendationEngineHeader();
     axios
